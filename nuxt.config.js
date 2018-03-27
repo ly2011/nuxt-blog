@@ -1,3 +1,5 @@
+const styleLoader = require('nuxt/lib/builder/webpack/style-loader.js');
+
 const pkg = require('./package');
 
 module.exports = {
@@ -24,12 +26,13 @@ module.exports = {
   /*
   ** Global CSS
   */
+  css: ['~assets/css/main.css'],
   // css: ['element-ui/lib/theme-chalk/index.css'],
 
   /*
   ** Plugins to load before mounting the App
   */
-  // plugins: ['@/plugins/element-ui'],
+  plugins: ['@/plugins/element-ui'],
 
   /*
   ** Nuxt.js modules
@@ -57,7 +60,7 @@ module.exports = {
       app: 'hare.[chunkhash:12].js',
       css: 'hare.[contenthash:12].css'
     },
-    // vendor: ['element-ui'],
+    vendor: ['axios'],
     babel: {
       plugins: [
         [
@@ -66,7 +69,8 @@ module.exports = {
             libraryName: 'element-ui',
             styleLibraryName: 'theme-chalk'
           }
-        ]
+        ],
+        'date-fns'
       ]
     },
     loaders: [
@@ -87,11 +91,11 @@ module.exports = {
         }
       }
     ],
-    postcss: [
-      require('autoprefixer')({
-        browsers: ['last 3 versions']
-      })
-    ],
+    // postcss: [
+    //   require('autoprefixer')({
+    //     browsers: ['last 3 versions']
+    //   })
+    // ],
     /*
     ** You can extend webpack config here
     */
@@ -103,6 +107,10 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
+        });
+        config.module.rules.push({
+          test: /\.sss$/,
+          use: styleLoader.call(this, 'css', 'postcss-loader')
         });
       }
     }
