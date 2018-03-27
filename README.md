@@ -4,7 +4,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 $ yarn install
 
@@ -19,4 +19,6 @@ $ yarn start
 $ yarn run generate
 ```
 
-For detailed explanation on how things work, checkout [Nuxt.js docs](https://nuxtjs.org).
+## ERROR
+
+1.  [Error: [vuex] Do not mutate vuex store state outside mutation handlers](https://github.com/nuxt/nuxt.js/issues/1917)

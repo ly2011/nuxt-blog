@@ -14,10 +14,14 @@
           <el-table-column prop="title" label="标题" align="center" min-width="120" show-overflow-tooltip></el-table-column>
           <el-table-column prop="visit_count" label="浏览数" align="center" min-width="120"></el-table-column>
           <el-table-column prop="reply_count" label="回复数" align="center" min-width="120"></el-table-column>
-          <el-table-column prop="create_at" label="发表时间" align="center" min-width="120"></el-table-column>
+          <el-table-column label="发表时间" align="center" min-width="120">
+            <template slot-scope="scope">
+              {{ scope.row.create_at }}
+            </template>
+          </el-table-column>
           <el-table-column label="操作" align="center" min-width="120">
             <template slot-scope="scope">
-              <el-button @click="gotoDetail( scope.row )" size="small">编辑</el-button>
+              <el-button @click="gotoDetail( scope.row )" size="small">详情</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -33,36 +37,22 @@
 </template>
 
 <script>
-import { format } from 'date-fns';
 import { topTabs } from '~/utils/tabs';
-// import { mapGetters } from 'vuex'
+import { mapGetters } from 'vuex';
 
 export default {
-  components: {},
   async asyncData({ store, route, params }) {
     // 触发 action 后, 会返回 Promise
-    // return store.dispatch('getTopics');
-    const data = await store.dispatch('getTopics');
+    await store.dispatch('topics/getTopics');
   },
   computed: {
     // 从 store 的 state 对象中获取 topics
-    topics() {
-      return this.$store.state.topics.map(topic => {
-        if (topic.create_at) {
-          topic.create_at = format(topic.create_at, 'YYYY-MM-DD');
-        }
-        return topic;
-      });
-    },
-    loading() {
-      return this.$store.state.loading;
-    },
-    tab() {
-      return this.$store.state.tab;
-    },
-    pageInfo() {
-      return this.$store.state.pageInfo;
-    }
+    ...mapGetters({
+      topics: 'topics/topics',
+      loading: 'topics/loading',
+      tab: 'topics/tab',
+      pageInfo: 'topics/pageInfo'
+    })
   },
   data() {
     return {
@@ -82,11 +72,19 @@ export default {
       if (this.loading) {
         return;
       }
-      this.$store.dispatch('getTopics', params);
+      this.$store.dispatch('topics/getTopics', params);
     },
     handleCurrentChange(val) {
       const params = { tab: this.tab, page: val || 1 };
       this.fetchTopics(params);
+    },
+
+    gotoDetail(row) {
+      const { id } = row;
+      this.$router.push({
+        name: 'topic',
+        query: { id }
+      });
     }
   }
 };
