@@ -1,5 +1,6 @@
 // topic.js
 import { getTopic } from '~/api/cnode';
+import { formatDate } from '~/utils/time';
 
 export const state = () => ({
   topic: {},
@@ -33,6 +34,18 @@ export const mutations = {
 
 export const getters = {
   topic(state) {
+    if (state.topic) {
+      const keys = ['create_at', 'last_reply_at'];
+      for (const [key, value] of Object.entries(state.topic)) {
+        if (keys.includes(key)) {
+          if (value) {
+            state.topic[key] = formatDate(value);
+          } else {
+            state.topic[key] = '';
+          }
+        }
+      }
+    }
     return state.topic;
   },
   loading(state) {
