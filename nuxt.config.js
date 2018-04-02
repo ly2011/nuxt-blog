@@ -19,6 +19,20 @@ module.exports = {
   },
 
   /*
+  ** Generate location
+  */
+  generate: {
+    dir: 'dist'
+  },
+
+  /*
+  ** Router
+  */
+  router: {
+    base: process.env.DEPLOY_ENV === 'STATIC' ? '/nuxt-blog/' : '/'
+  },
+
+  /*
   ** Customize the progress-bar color
   */
   loading: { color: '#3B8070' },
@@ -32,7 +46,10 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/element-ui',{ src: '~plugins/persistedstate.js', ssr: false }],
+  plugins: [
+    '@/plugins/element-ui',
+    { src: '~plugins/persistedstate.js', ssr: false }
+  ],
 
   /*
   ** Nuxt.js modules
