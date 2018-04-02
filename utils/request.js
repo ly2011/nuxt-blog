@@ -11,7 +11,8 @@ axios.defaults.transformRequest = [
     return qs.stringify(data);
   }
 ];
-// 带cookie请求 axios.defaults.withCredentials = true;
+// 带cookie请求
+// axios.defaults.withCredentials = true;
 
 // 创建axios实例
 const service = axios.create({
@@ -31,11 +32,11 @@ const service = axios.create({
 // request拦截器
 service.interceptors.request.use(
   config => {
-    const token = '';
+    // const accesstoken = '';
     if (!config.data) {
       config.data = {};
     }
-    config.data.token = token || '';
+    // config.data.accesstoken = accesstoken || '';
     // if (config.method === 'post') {   // 序列化   config.data =
     // qs.stringify(config.data); }
     return config;

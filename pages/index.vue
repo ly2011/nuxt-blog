@@ -1,7 +1,8 @@
 <template>
+
   <section class="container">
     <div>
-
+      <nav-bar></nav-bar>
       <header class="header">
         <el-tabs @tab-click="changeTab">
           <el-tab-pane v-for="(tab, index) in topTabs" :key="index" :label="tab.title" :name="tab.tab"></el-tab-pane>
@@ -40,7 +41,12 @@
 import { topTabs } from '~/utils/tabs';
 import { mapGetters } from 'vuex';
 
+import NavBar from '~/components/NavBar';
+
 export default {
+  components: {
+    NavBar
+  },
   async asyncData({ store, route, params }) {
     // 触发 action 后, 会返回 Promise
     await store.dispatch('topics/getTopics');

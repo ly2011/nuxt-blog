@@ -6,7 +6,7 @@
         <span class="title" v-text="topic.title"></span>
         <div class="changes">
           <span>发布于 {{topic.create_at}}</span>
-          <span>作者 {{topic.author.loginname}}</span>
+          <span>作者 {{topic.author && topic.author.loginname}}</span>
           <span>{{topic.visit_count}} 次浏览</span>
           <span>最后一次编辑是 {{topic.last_reply_at}}</span>
           <span>来自 </span>
@@ -26,7 +26,7 @@ export default {
   async asyncData({ store, route, query }) {
     // 触发 action 后, 会返回 Promise
     const { id = '' } = query;
-    const data = await store.dispatch('topic/getTopic', id);
+    await store.dispatch('topic/getTopic', id);
   },
   computed: {
     // 从 store 的 state 对象中获取 topic
@@ -34,9 +34,6 @@ export default {
       topic: 'topic/topic',
       loading: 'topic/loading'
     })
-  },
-  mounted() {
-    console.dir(this.topic);
   }
 };
 </script>

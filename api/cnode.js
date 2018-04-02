@@ -25,3 +25,19 @@ export const getTopic = (id = '') =>
     method: 'get',
     url: `/topic/${id}`
   });
+
+export const Login = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'post',
+    url: '/accesstoken',
+    data: params
+  });
+
+export const getMessages = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'get',
+    url: '/messages',
+    params: params
+  });
