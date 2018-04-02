@@ -1,39 +1,43 @@
 <template>
 
-  <section class="container">
-    <div>
-      <nav-bar></nav-bar>
-      <header class="header">
-        <el-tabs @tab-click="changeTab">
-          <el-tab-pane v-for="(tab, index) in topTabs" :key="index" :label="tab.title" :name="tab.tab"></el-tab-pane>
-        </el-tabs>
-      </header>
+  <section class="topics-container container">
+    <nav-bar></nav-bar>
+    <div class="clearfix" id="main">
+      <side-bar></side-bar>
+      <div id="content">
+        <header class="header">
+          <el-tabs @tab-click="changeTab">
+            <el-tab-pane v-for="(tab, index) in topTabs" :key="index" :label="tab.title" :name="tab.tab"></el-tab-pane>
+          </el-tabs>
+        </header>
 
-      <div class="table-list">
-        <el-table :data="topics" style="width: 100%" v-loading.body="loading">
-          <el-table-column type="index" label="序号" align="center" width="60px"></el-table-column>
-          <el-table-column prop="title" label="标题" align="center" min-width="120" show-overflow-tooltip></el-table-column>
-          <el-table-column prop="visit_count" label="浏览数" align="center" min-width="120"></el-table-column>
-          <el-table-column prop="reply_count" label="回复数" align="center" min-width="120"></el-table-column>
-          <el-table-column label="发表时间" align="center" min-width="120">
-            <template slot-scope="scope">
-              {{ scope.row.create_at }}
-            </template>
-          </el-table-column>
-          <el-table-column label="操作" align="center" min-width="120">
-            <template slot-scope="scope">
-              <el-button @click="gotoDetail( scope.row )" size="small">详情</el-button>
-            </template>
-          </el-table-column>
-        </el-table>
+        <div class="table-list">
+          <el-table :data="topics" style="width: 100%" v-loading.body="loading">
+            <el-table-column type="index" label="序号" align="center" width="60px"></el-table-column>
+            <el-table-column prop="title" label="标题" align="center" min-width="120" show-overflow-tooltip></el-table-column>
+            <el-table-column prop="visit_count" label="浏览数" align="center" min-width="120"></el-table-column>
+            <el-table-column prop="reply_count" label="回复数" align="center" min-width="120"></el-table-column>
+            <el-table-column label="发表时间" align="center" min-width="120">
+              <template slot-scope="scope">
+                {{ scope.row.create_at }}
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" align="center" min-width="120">
+              <template slot-scope="scope">
+                <el-button @click="gotoDetail( scope.row )" size="small">详情</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
 
-        <div class="pagination" v-show="pageInfo.total">
-          <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.page" :page-size="pageInfo.size" layout="total, prev, pager, next, jumper, slot" :total="pageInfo.total">
-            <el-button class="jump-page-btn" size="small" type="primary">跳转</el-button>
-          </el-pagination>
+          <div class="pagination" v-show="pageInfo.total">
+            <el-pagination @current-change="handleCurrentChange" :current-page="pageInfo.page" :page-size="pageInfo.size" layout="total, prev, pager, next, jumper, slot" :total="pageInfo.total">
+              <el-button class="jump-page-btn" size="small" type="primary">跳转</el-button>
+            </el-pagination>
+          </div>
         </div>
       </div>
     </div>
+
   </section>
 </template>
 
@@ -42,14 +46,17 @@ import { topTabs } from '~/utils/tabs';
 import { mapGetters } from 'vuex';
 
 import NavBar from '~/components/NavBar';
+import SideBar from '~/components/SideBar';
 
 export default {
   components: {
-    NavBar
+    NavBar,
+    SideBar
   },
   async asyncData({ store, route, params }) {
     // 触发 action 后, 会返回 Promise
     await store.dispatch('topics/getTopics');
+    // await store.dispatch('user/getUserInfo')
   },
   computed: {
     // 从 store 的 state 对象中获取 topics
@@ -97,5 +104,17 @@ export default {
 </script>
 
 <style lang="postcss">
-
+.topics-container {
+  .header {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
+    .el-tabs {
+      .el-tabs__header {
+        margin: 0;
+      }
+    }
+  }
+}
 </style>

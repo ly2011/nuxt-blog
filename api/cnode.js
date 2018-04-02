@@ -41,3 +41,10 @@ export const getMessages = (params = {}) =>
     url: '/messages',
     params: params
   });
+
+export const getUserInfo = (loginname = '') =>
+  request({
+    baseURL: BASE_URL,
+    method: 'get',
+    url: `/user/${loginname}`
+  });

@@ -1,5 +1,5 @@
 // topic.js
-import { Login, getMessages } from '~/api/cnode';
+import { Login, getMessages, getUserInfo } from '~/api/cnode';
 import { formatDate } from '~/utils/time';
 
 export const state = () => ({
@@ -51,6 +51,18 @@ export const actions = {
         })
     );
   },
+  getUserInfo({ commit }, loginname = '') {
+    return new Promise((resolve, reject) =>
+      getUserInfo(loginname)
+        .then(user_info => {
+          commit('setUserInfo', { userInfo: user_info.data });
+          resolve(messages);
+        })
+        .catch(error => {
+          reject(error);
+        })
+    );
+  },
   // 前端 登出
   fedLogOut({ commit }) {
     return new Promise(resolve => {
@@ -68,10 +80,15 @@ export const mutations = {
   },
   setAccessToken: (state, accesstoken) => {
     state.accesstoken = accesstoken;
-    sessionStorage.setItem('accesstoken', accesstoken);
+    if (!global) {
+      sessionStorage.setItem('accesstoken', accesstoken);
+    }
   },
   setMessages: (state, messages) => {
     state.messages = messages;
+  },
+  setUserInfo(state, { userInfo }) {
+    state.userInfo = userInfo;
   }
 };
 
@@ -85,8 +102,14 @@ export const getters = {
   messages(state) {
     return state.messages;
   },
+  userInfo(state) {
+    return state.userInfo;
+  },
   accesstoken(state) {
-    return state.accesstoken || sessionStorage.getItem('accesstoken');
+    if (!global) {
+      return state.accesstoken || sessionStorage.getItem('accesstoken');
+    }
+    return state.accesstoken;
   }
 };
 

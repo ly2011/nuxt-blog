@@ -2,7 +2,7 @@
   <div class="container login-container">
     <div class="login-wrap">
       <div class="login-inner">
-        <el-form :model="searchForm" ref="searchForm" :rules="rules" label-position="right" label-width="100px">
+        <el-form :model="searchForm" ref="searchForm" :rules="rules" label-position="right" label-width="120px">
           <el-form-item label="accesstoken" prop="accesstoken">
             <el-input v-model.trim="searchForm.accesstoken" placeholder="accesstoken" :maxlength="36"></el-input>
           </el-form-item>
@@ -140,8 +140,9 @@ export default {
 
 <style lang="postcss" scoped>
 .login-container {
+  min-height: 100vh;
   display: flex;
-  align-content: center;
+  justify-content: center;
   align-items: center;
   .login-wrap {
     display: flex;

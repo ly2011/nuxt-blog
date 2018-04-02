@@ -84,6 +84,7 @@ export default store;
  */
 import { format } from 'date-fns';
 import { getTopics } from '~/api/cnode';
+import { process } from 'ipaddr.js';
 
 export const state = () => ({
   topics: [],
