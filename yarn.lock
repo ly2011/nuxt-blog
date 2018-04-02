@@ -1902,7 +1902,7 @@ deepmerge@^1.2.0:
   version "1.5.2"
   resolved "http://registry.npm.taobao.org/deepmerge/download/deepmerge-1.5.2.tgz#10499d868844cdad4fee0842df8c7f6f0c95a753"
 
-deepmerge@^2.0.0:
+deepmerge@^2.0.0, deepmerge@^2.1.0:
   version "2.1.0"
   resolved "http://registry.npm.taobao.org/deepmerge/download/deepmerge-2.1.0.tgz#511a54fff405fc346f0240bb270a3e9533a31102"
 
@@ -3429,6 +3429,10 @@ isstream@~0.1.2:
 js-base64@^2.1.9:
   version "2.4.3"
   resolved "http://registry.npm.taobao.org/js-base64/download/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
+
+js-cookie@^2.2.0:
+  version "2.2.0"
+  resolved "http://registry.npm.taobao.org/js-cookie/download/js-cookie-2.2.0.tgz#1b2c279a6eece380a12168b92485265b35b1effb"
 
 js-tokens@^3.0.0, js-tokens@^3.0.2:
   version "3.0.2"
@@ -5792,6 +5796,10 @@ shell-quote@^1.6.1:
     array-reduce "~0.0.0"
     jsonify "~0.0.0"
 
+shvl@^1.2.0:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/shvl/download/shvl-1.2.1.tgz#7ea96257475b20cb69d2a58897c0640c93973593"
+
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
   resolved "http://registry.npm.taobao.org/signal-exit/download/signal-exit-3.0.2.tgz#b5fdc08f1287ea1178628e415e25132b73646c6d"
@@ -6572,6 +6580,13 @@ vuex-persist@^1.1.6:
   resolved "http://registry.npm.taobao.org/vuex-persist/download/vuex-persist-1.1.6.tgz#c6c7743f29018440b902ead0b3c5399c43e2b60a"
   dependencies:
     lodash.merge "^4.6.1"
+
+vuex-persistedstate@^2.5.1:
+  version "2.5.1"
+  resolved "http://registry.npm.taobao.org/vuex-persistedstate/download/vuex-persistedstate-2.5.1.tgz#129274514e2e46b49e8ca8066cf85b345c7b4ce2"
+  dependencies:
+    deepmerge "^2.1.0"
+    shvl "^1.2.0"
 
 vuex@^3.0.1:
   version "3.0.1"

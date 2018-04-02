@@ -32,7 +32,7 @@ module.exports = {
   /*
   ** Plugins to load before mounting the App
   */
-  plugins: ['@/plugins/element-ui'],
+  plugins: ['@/plugins/element-ui',{ src: '~plugins/persistedstate.js', ssr: false }],
 
   /*
   ** Nuxt.js modules

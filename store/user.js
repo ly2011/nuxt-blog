@@ -40,7 +40,6 @@ export const actions = {
     return new Promise((resolve, reject) =>
       getMessages(params)
         .then(messages => {
-          console.log('111');
           commit('setMessages', messages.data);
           commit('setLoading', { loading: false });
           resolve(messages);
@@ -80,9 +79,6 @@ export const mutations = {
   },
   setAccessToken: (state, accesstoken) => {
     state.accesstoken = accesstoken;
-    if (!global) {
-      sessionStorage.setItem('accesstoken', accesstoken);
-    }
   },
   setMessages: (state, messages) => {
     state.messages = messages;
@@ -106,9 +102,6 @@ export const getters = {
     return state.userInfo;
   },
   accesstoken(state) {
-    if (!global) {
-      return state.accesstoken || sessionStorage.getItem('accesstoken');
-    }
     return state.accesstoken;
   }
 };

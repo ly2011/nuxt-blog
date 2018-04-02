@@ -17,10 +17,12 @@
     "axios": "^0.18.0",
     "date-fns": "^1.29.0",
     "element-ui": "^2.2.2",
+    "js-cookie": "^2.2.0",
     "nuxt": "^1.4.0",
     "qs": "^6.5.1",
     "vue": "^2.5.16",
-    "vuex-persist": "^1.1.6"
+    "vuex-persist": "^1.1.6",
+    "vuex-persistedstate": "^2.5.1"
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",

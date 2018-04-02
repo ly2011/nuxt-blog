@@ -63,7 +63,11 @@ export default {
     })
   },
   mounted() {
-    this.fetchMessages();
+    const _self = this;
+    setTimeout(() => {
+      // 添加 persistedstate.js 中间件后，需要设置setTimout 0ms 后刷新页面才不会报错（accesstoken不会立即获取到值）
+      _self.fetchMessages();
+    }, 0);
   },
   methods: {
     async fetchMessages() {
