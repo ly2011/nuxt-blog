@@ -48,7 +48,8 @@ module.exports = {
   */
   plugins: [
     '@/plugins/element-ui',
-    { src: '~plugins/persistedstate.js', ssr: false }
+    { src: '~plugins/persistedstate.js', ssr: false },
+    { src: '~plugins/mavon-editor.js', ssr: false }
   ],
 
   /*

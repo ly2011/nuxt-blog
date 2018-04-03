@@ -20,7 +20,7 @@
 
     <el-card class="box-card">
       <div class="box-card-content">
-        <el-button type="success" size="small">发布话题</el-button>
+        <el-button type="success" size="small" @click="toCreateTopic">发布话题</el-button>
       </div>
     </el-card>
   </aside>
@@ -49,6 +49,11 @@ export default {
           );
         }
       } catch (error) {}
+    },
+    toCreateTopic() {
+      this.$router.push({
+        name: 'topic-create'
+      });
     }
   }
 };
