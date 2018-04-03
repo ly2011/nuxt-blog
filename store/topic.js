@@ -86,7 +86,10 @@ export const actions = {
     );
   },
   setTopic({ commit }, params = {}) {
-    return new Promise((resolve, reject) => commit('setTopic', params));
+    return new Promise((resolve, reject) => {
+      commit('setTopic', params);
+      resolve();
+    });
   }
 };
 export const mutations = {
