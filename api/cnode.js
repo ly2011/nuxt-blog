@@ -58,7 +58,7 @@ export const addTopic = (params = {}) =>
   request({
     baseURL: BASE_URL,
     method: 'post',
-    url: '/topics ',
+    url: '/topics',
     data: params
   });
 
@@ -66,6 +66,24 @@ export const updateTopic = (params = {}) =>
   request({
     baseURL: BASE_URL,
     method: 'post',
-    url: '/topics/update ',
+    url: '/topics/update',
+    data: params
+  });
+
+/* 收藏主题 */
+export const collectTopic = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'post',
+    url: '/topic_collect/collect',
+    data: params
+  });
+
+/* 取消主题 */
+export const delTopic = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'post',
+    url: '/topic_collect/de_collect',
     data: params
   });

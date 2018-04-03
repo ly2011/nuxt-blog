@@ -1,5 +1,11 @@
 // topic.js
-import { getTopic, addTopic, updateTopic } from '~/api/cnode';
+import {
+  getTopic,
+  addTopic,
+  updateTopic,
+  collectTopic,
+  delTopic
+} from '~/api/cnode';
 import { formatDate } from '~/utils/time';
 import { topTabs } from '~/utils/tabs';
 
@@ -50,6 +56,37 @@ export const actions = {
           reject(error);
         })
     );
+  },
+  collectTopic({ commit }, params = {}) {
+    commit('setLoading', { loading: true });
+    return new Promise((resolve, reject) =>
+      collectTopic(params)
+        .then(topic => {
+          commit('setLoading', { loading: false });
+          resolve(topic);
+        })
+        .catch(error => {
+          commit('setLoading', { loading: false });
+          reject(error);
+        })
+    );
+  },
+  delTopic({ commit }, params = {}) {
+    commit('setLoading', { loading: true });
+    return new Promise((resolve, reject) =>
+      delTopic(params)
+        .then(topic => {
+          commit('setLoading', { loading: false });
+          resolve(topic);
+        })
+        .catch(error => {
+          commit('setLoading', { loading: false });
+          reject(error);
+        })
+    );
+  },
+  setTopic({ commit }, params = {}) {
+    return new Promise((resolve, reject) => commit('setTopic', params));
   }
 };
 export const mutations = {

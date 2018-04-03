@@ -26,6 +26,7 @@ $ git subtree push --prefix=dist origin gh-pages
 ## ERROR
 
 1.  [Error: [vuex] Do not mutate vuex store state outside mutation handlers](https://github.com/nuxt/nuxt.js/issues/1917)
+2.  `/topic/:id` 接口有缓存，造成读取的 `is_collect` 为 `false`
 
 ## [nuxt 部署至 GitHub Pages]
 

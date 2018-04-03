@@ -10,7 +10,8 @@
           <span>{{topic.visit_count}} 次浏览</span>
           <span>最后一次编辑是 {{topic.last_reply_at}}</span>
           <span>来自 {{topic.tabName}}</span>
-          <el-button type="success" size="small" class="pull-right" @click="toCollect">收藏</el-button>
+          <el-button v-if="topic.is_collect" type="info" size="small" class="pull-right" @click="delCollect">取消收藏</el-button>
+          <el-button v-else type="success" size="small" class="pull-right" @click="toCollect">收藏</el-button>
         </div>
         <div class="manage_topic" v-show="isMe">
           <i class="edit-btn el-icon-edit-outline" @click="toEdit"></i>
@@ -40,7 +41,8 @@ export default {
     ...mapGetters({
       topic: 'topic/topic',
       loading: 'topic/loading',
-      loginInfo: 'user/loginInfo'
+      loginInfo: 'user/loginInfo',
+      accesstoken: 'user/accesstoken'
     }),
     isMe() {
       if (this.loginInfo && this.topic.author) {
@@ -50,7 +52,60 @@ export default {
     }
   },
   methods: {
-    toCollect() {},
+    async toCollect() {
+      const params = {
+        accesstoken: this.accesstoken,
+        topic_id: this.topic.id
+      };
+      try {
+        const res = await this.$store.dispatch('topic/collectTopic', params);
+        if (res.success) {
+          this.$message({
+            message: '收藏成功',
+            type: 'success'
+          });
+          const topic = { ...this.topic, ...{ is_collect: true } };
+          this.$store.dispatch('topic/setTopic', { topic });
+        } else {
+          this.$message({
+            message: '收藏失败',
+            type: 'error'
+          });
+        }
+      } catch (error) {
+        this.$message({
+          message: '收藏失败',
+          type: 'error'
+        });
+      }
+    },
+    async delCollect() {
+      const params = {
+        accesstoken: this.accesstoken,
+        topic_id: this.topic.id
+      };
+      try {
+        const res = await this.$store.dispatch('topic/delTopic', params);
+        if (res.success) {
+          this.$message({
+            message: '取消收藏成功',
+            type: 'success'
+          });
+          const topic = { ...this.topic, ...{ is_collect: false } };
+          this.$store.dispatch('topic/setTopic', { topic });
+        } else {
+          this.$message({
+            message: '取消收藏失败',
+            type: 'error'
+          });
+        }
+      } catch (error) {
+        this.$message({
+          message: '取消收藏失败',
+          type: 'error'
+        });
+      }
+    },
     toEdit() {
       this.$router.push({
         name: 'topic-edit',
