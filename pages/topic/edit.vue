@@ -37,20 +37,27 @@ export default {
     NavBar,
     EditorSideBar
   },
+  async asyncData({ store, route, query }) {
+    // 触发 action 后, 会返回 Promise
+    const { id = '' } = query;
+    const params = { id, mdrender: false };
+    await store.dispatch('topic/getTopic', params);
+  },
   computed: {
     // 从 store 的 state 对象中获取 topic
     ...mapGetters({
+      topic: 'topic/topic',
       accesstoken: 'user/accesstoken',
       loading: 'user/loading'
     })
   },
-
   data() {
     return {
       searchForm: {
         tab: '',
         title: '',
-        content: ''
+        content: '',
+        topic_id: null
       },
       tabs: [
         {
@@ -88,6 +95,14 @@ export default {
       }
     };
   },
+  created() {
+    if (this.topic) {
+      this.searchForm.topic_id = this.topic.id || null;
+      this.searchForm.tab = this.topic.tab || '';
+      this.searchForm.title = this.topic.title || '';
+      this.searchForm.content = this.topic.content || '';
+    }
+  },
   methods: {
     async createTopic() {
       if (!this.accesstoken) {
@@ -97,7 +112,13 @@ export default {
         });
         return;
       }
-
+      if (!this.searchForm.topic_id) {
+        this.$message({
+          message: '缺少主题id',
+          type: 'error'
+        });
+        return;
+      }
       if (!this.searchForm.tab) {
         this.$message({
           message: '必须选择一个版块！',
@@ -134,9 +155,8 @@ export default {
         ...this.searchForm,
         ...{ accesstoken: this.accesstoken }
       };
-
       try {
-        const res = await this.$store.dispatch('topic/addTopic', post_data);
+        const res = await this.$store.dispatch('topic/updateTopic', post_data);
         if (res.success) {
           this.$message({
             message: '添加文章成功',
@@ -145,7 +165,7 @@ export default {
           this.$router.push({
             name: 'topic',
             query: {
-              id: res.topic_id
+              id: this.topic.id
             }
           });
         } else {

@@ -18,7 +18,7 @@
       </div>
     </el-card>
 
-    <el-card class="box-card">
+    <el-card class="box-card" v-show="accesstoken">
       <div class="box-card-content">
         <el-button type="success" size="small" @click="toCreateTopic">发布话题</el-button>
       </div>
@@ -32,6 +32,7 @@ export default {
   computed: {
     // 从 store 的 state 对象中获取 topics
     ...mapGetters({
+      accesstoken: 'user/accesstoken',
       loginInfo: 'user/loginInfo',
       userInfo: 'user/userInfo'
     })

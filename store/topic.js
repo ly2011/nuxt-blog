@@ -1,15 +1,16 @@
 // topic.js
-import { getTopic } from '~/api/cnode';
+import { getTopic, addTopic, updateTopic } from '~/api/cnode';
 import { formatDate } from '~/utils/time';
+import { topTabs } from '~/utils/tabs';
 
 export const state = () => ({
   topic: {},
   loading: false
 });
 export const actions = {
-  getTopic({ commit }, id) {
+  getTopic({ commit }, params = {}) {
     commit('setLoading', { loading: true });
-    return getTopic(id)
+    return getTopic(params)
       .then(topic => {
         let t_topic = {};
         if (topic.success) {
@@ -21,6 +22,34 @@ export const actions = {
       .catch(() => {
         commit('setLoading', { loading: false });
       });
+  },
+  addTopic({ commit }, params = {}) {
+    commit('setLoading', { loading: true });
+    return new Promise((resolve, reject) =>
+      addTopic(params)
+        .then(topic => {
+          commit('setLoading', { loading: false });
+          resolve(topic);
+        })
+        .catch(error => {
+          commit('setLoading', { loading: false });
+          reject(error);
+        })
+    );
+  },
+  updateTopic({ commit }, params = {}) {
+    commit('setLoading', { loading: true });
+    return new Promise((resolve, reject) =>
+      updateTopic(params)
+        .then(topic => {
+          commit('setLoading', { loading: false });
+          resolve(topic);
+        })
+        .catch(error => {
+          commit('setLoading', { loading: false });
+          reject(error);
+        })
+    );
   }
 };
 export const mutations = {
@@ -43,6 +72,10 @@ export const getters = {
           } else {
             state.topic[key] = '';
           }
+        }
+        if (key === 'tab') {
+          const tmp_tab = topTabs.filter(item => item.tab === value)[0] || {};
+          state.topic.tabName = tmp_tab.title || '';
         }
       }
     }

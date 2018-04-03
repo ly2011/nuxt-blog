@@ -4,12 +4,17 @@
 
       <header class="header">
         <span class="title" v-text="topic.title"></span>
-        <div class="changes">
+        <div class="changes clearfix">
           <span>发布于 {{topic.create_at}}</span>
           <span>作者 {{topic.author && topic.author.loginname}}</span>
           <span>{{topic.visit_count}} 次浏览</span>
           <span>最后一次编辑是 {{topic.last_reply_at}}</span>
-          <span>来自 </span>
+          <span>来自 {{topic.tabName}}</span>
+          <el-button type="success" size="small" class="pull-right" @click="toCollect">收藏</el-button>
+        </div>
+        <div class="manage_topic" v-show="isMe">
+          <i class="edit-btn el-icon-edit-outline" @click="toEdit"></i>
+          <i class="del-btn el-icon-delete" @click="toDel"></i>
         </div>
       </header>
 
@@ -26,14 +31,35 @@ export default {
   async asyncData({ store, route, query }) {
     // 触发 action 后, 会返回 Promise
     const { id = '' } = query;
-    await store.dispatch('topic/getTopic', id);
+    const params = { id };
+    await store.dispatch('topic/getTopic', params);
   },
+
   computed: {
     // 从 store 的 state 对象中获取 topic
     ...mapGetters({
       topic: 'topic/topic',
-      loading: 'topic/loading'
-    })
+      loading: 'topic/loading',
+      loginInfo: 'user/loginInfo'
+    }),
+    isMe() {
+      if (this.loginInfo && this.topic.author) {
+        return this.topic.author.loginname === this.loginInfo.loginname;
+      }
+      return false;
+    }
+  },
+  methods: {
+    toCollect() {},
+    toEdit() {
+      this.$router.push({
+        name: 'topic-edit',
+        query: {
+          id: this.topic.id
+        }
+      });
+    },
+    toDel() {}
   }
 };
 </script>
@@ -59,6 +85,19 @@ export default {
       color: #838383;
       span:before {
         content: '•';
+      }
+    }
+
+    .manage_topic {
+      .edit-btn,
+      .del-btn {
+        cursor: pointer;
+        font-size: 16px;
+        color: #909399;
+      }
+
+      .edit-btn {
+        padding-right: 10px;
       }
     }
   }

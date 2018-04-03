@@ -19,12 +19,16 @@ export const getTopics = ({
     }
   });
 
-export const getTopic = (id = '') =>
-  request({
+export const getTopic = (params = {}) => {
+  const { id = '' } = params;
+  delete params.id;
+  return request({
     baseURL: BASE_URL,
     method: 'get',
-    url: `/topic/${id}`
+    url: `/topic/${id}`,
+    params
   });
+};
 
 export const Login = (params = {}) =>
   request({
@@ -47,4 +51,21 @@ export const getUserInfo = (loginname = '') =>
     baseURL: BASE_URL,
     method: 'get',
     url: `/user/${loginname}`
+  });
+
+/* 新建主题 */
+export const addTopic = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'post',
+    url: '/topics ',
+    data: params
+  });
+
+export const updateTopic = (params = {}) =>
+  request({
+    baseURL: BASE_URL,
+    method: 'post',
+    url: '/topics/update ',
+    data: params
   });

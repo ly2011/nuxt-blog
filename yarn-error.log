@@ -1,14 +1,14 @@
 Arguments: 
-  D:\Program Files\nodejs\node.exe C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run generate
+  E:\Program Files\nodejs\node.exe C:\Users\77232\AppData\Roaming\npm\node_modules\yarn\bin\yarn.js run dev
 
 PATH: 
-  D:\python36\Scripts\;D:\python36\;C:\ProgramData\Oracle\Java\javapath;D:\Python27\;D:\Python27\Scripts;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\ProgramData\chocolatey\bin;C:\Python27;C:\Go\bin;C:\Program Files\Git\cmd;D:\Program Files (x86)\Git\cmd;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Java\jdk1.8.0_152\bin;D:\Redis\;C:\Program Files\Java\jdk1.8.0_152\bin;D:\Program Files\nodejs\;C:\Users\Administrator\AppData\Local\Microsoft\WindowsApps;D:\Program Files (x86)\Microsoft VS Code\bin;D:\Program Files (x86)\Egret\Egret Wing 3\bin;C:\Users\Administrator\AppData\Local\atom\bin;D:\Android\sdk;D:\Android\sdk\platform-tools;D:\Program Files\Fiddler;C:\Users\Administrator\AppData\Roaming\npm
+  E:\Python27\;E:\Python27\Scripts;C:\Program Files (x86)\Intel\iCLS Client\;C:\Program Files\Intel\iCLS Client\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files\Intel\Intel(R) Management Engine Components\DAL;C:\Program Files (x86)\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Intel\Intel(R) Management Engine Components\IPT;C:\Program Files\Microsoft SQL Server\120\DTS\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\110\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files\Microsoft SQL Server\120\Tools\Binn\;C:\Program Files (x86)\Microsoft SQL Server\120\Tools\Binn\ManagementStudio\;C:\Program Files (x86)\Microsoft SQL Server\120\DTS\Binn\;E:\Program Files\Redis\;C:\ProgramData\chocolatey\bin;C:\Program Files\Java\jdk1.8.0_131\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;E:\Program Files\Sublime Text 3;C:\Users\77232\AppData\Local\atom\bin;C:\Users\77232\AppData\Local\Programs\Python\Python36\;C:\Users\77232\AppData\Local\Programs\Python\Python36\Scripts;C:\Users\77232\AppData\Local\Android\sdk\tools;C:\Users\77232\AppData\Local\Android\sdk\platform-tools;C:\Android\android-sdk\tools;C:\Android\android-sdk\platform-tools;E:\Program Files\TortoiseSVN\bin;E:\Program Files\Git\cmd;E:\Program Files\nodejs\;C:\Users\77232\AppData\Local\Microsoft\WindowsApps;E:\Program Files (x86)\Microsoft VS Code\bin;E:\Program Files\Sublime Text 3;C:\Users\77232\AppData\Local\Android\sdk\tools;C:\Users\77232\AppData\Local\Android\sdk\platform-tools;E:\Program Files (x86)\Oni;C:\Users\77232\AppData\Local\atom\bin;C:\Users\77232\AppData\Local\Microsoft\WindowsApps;C:\Users\77232\AppData\Roaming\npm
 
 Yarn version: 
   1.5.1
 
 Node version: 
-  9.6.1
+  9.8.0
 
 Platform: 
   win32 x64
@@ -25,7 +25,6 @@ npm manifest:
       "build": "nuxt build",
       "start": "nuxt start",
       "generate": "cross-env DEPLOY_ENV=STATIC nuxt generate",
-      "deploy": "push-dir --dir=dist --branch=master --cleanup",
       "lint": "eslint --ext .js,.vue --ignore-path .gitignore .",
       "precommit": "npm run lint"
     },
@@ -35,10 +34,10 @@ npm manifest:
       "date-fns": "^1.29.0",
       "element-ui": "^2.2.2",
       "js-cookie": "^2.2.0",
+      "mavon-editor": "^2.5.2",
       "nuxt": "^1.4.0",
       "qs": "^6.5.1",
       "vue": "^2.5.16",
-      "vuex-persist": "^1.1.6",
       "vuex-persistedstate": "^2.5.1"
     },
     "devDependencies": {
@@ -60,7 +59,6 @@ npm manifest:
       "postcss-smart-import": "^0.7.6",
       "postcss-utilities": "^0.8.0",
       "precss": "^3.1.2",
-      "push-dir": "^0.4.1",
       "url-loader": "^1.0.1"
     }
   }
@@ -3026,6 +3024,14 @@ Lockfile:
     version "1.1.1"
     resolved "http://registry.npm.taobao.org/he/download/he-1.1.1.tgz#93410fd21b009735151f8868c2f271f3427e23fd"
   
+  highlight.js-async-webpack@^1.0.4:
+    version "1.0.4"
+    resolved "http://registry.npm.taobao.org/highlight.js-async-webpack/download/highlight.js-async-webpack-1.0.4.tgz#c06b67bf99f049045d62b756e5855b0912ec616c"
+  
+  highlight.js@^9.11.0:
+    version "9.12.0"
+    resolved "http://registry.npm.taobao.org/highlight.js/download/highlight.js-9.12.0.tgz#e6d9dbe57cbefe60751f02af336195870c90c01e"
+  
   hmac-drbg@^1.0.0:
     version "1.0.1"
     resolved "http://registry.npm.taobao.org/hmac-drbg/download/hmac-drbg-1.0.1.tgz#d2745701025a6c775a6c545793ed502fc0c649a1"
@@ -3698,10 +3704,6 @@ Lockfile:
     version "4.1.2"
     resolved "http://registry.npm.taobao.org/lodash.memoize/download/lodash.memoize-4.1.2.tgz#bcc6c49a42a2840ed997f323eada5ecd182e0bfe"
   
-  lodash.merge@^4.6.1:
-    version "4.6.1"
-    resolved "http://registry.npm.taobao.org/lodash.merge/download/lodash.merge-4.6.1.tgz#adc25d9cb99b9391c59624f379fbba60d7111d54"
-  
   lodash.template@^4.2.4, lodash.template@^4.4.0:
     version "4.4.0"
     resolved "http://registry.npm.taobao.org/lodash.template/download/lodash.template-4.4.0.tgz#e73a0385c8355591746e020b99679c690e68fba0"
@@ -3784,6 +3786,13 @@ Lockfile:
   math-expression-evaluator@^1.2.14:
     version "1.2.17"
     resolved "http://registry.npm.taobao.org/math-expression-evaluator/download/math-expression-evaluator-1.2.17.tgz#de819fdbcd84dccd8fae59c6aeb79615b9d266ac"
+  
+  mavon-editor@^2.5.2:
+    version "2.5.2"
+    resolved "http://registry.npm.taobao.org/mavon-editor/download/mavon-editor-2.5.2.tgz#c0c7c1b1025d40993e5ece560d048b2d920ac0c8"
+    dependencies:
+      highlight.js "^9.11.0"
+      highlight.js-async-webpack "^1.0.4"
   
   md5.js@^1.3.4:
     version "1.3.4"
@@ -5373,12 +5382,6 @@ Lockfile:
     version "2.1.0"
     resolved "http://registry.npm.taobao.org/punycode/download/punycode-2.1.0.tgz#5f863edc89b96db09074bad7947bf09056ca4e7d"
   
-  push-dir@^0.4.1:
-    version "0.4.1"
-    resolved "http://registry.npm.taobao.org/push-dir/download/push-dir-0.4.1.tgz#29481eacd9c2106bbb7941db6d37d122a071ecb4"
-    dependencies:
-      minimist "^1.2.0"
-  
   q@^1.1.2:
     version "1.5.1"
     resolved "http://registry.npm.taobao.org/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
@@ -6652,12 +6655,6 @@ Lockfile:
     version "2.5.16"
     resolved "http://registry.npm.taobao.org/vue/download/vue-2.5.16.tgz#07edb75e8412aaeed871ebafa99f4672584a0085"
   
-  vuex-persist@^1.1.6:
-    version "1.1.6"
-    resolved "http://registry.npm.taobao.org/vuex-persist/download/vuex-persist-1.1.6.tgz#c6c7743f29018440b902ead0b3c5399c43e2b60a"
-    dependencies:
-      lodash.merge "^4.6.1"
-  
   vuex-persistedstate@^2.5.1:
     version "2.5.1"
     resolved "http://registry.npm.taobao.org/vuex-persistedstate/download/vuex-persistedstate-2.5.1.tgz#129274514e2e46b49e8ca8066cf85b345c7b4ce2"
@@ -6885,15 +6882,15 @@ Lockfile:
 
 Trace: 
   Error: Command failed.
-  Exit code: 3221225477
+  Exit code: 1
   Command: C:\WINDOWS\system32\cmd.exe
-  Arguments: /d /s /c cross-env DEPLOY_ENV=STATIC nuxt generate
-  Directory: D:\test\js\20180402\nuxt-blog
+  Arguments: /d /s /c nuxt
+  Directory: E:\test\js\20180327\nuxt-blog
   Output:
   
-      at ProcessTermError.MessageError (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
-      at new ProcessTermError (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
-      at ChildProcess.<anonymous> (C:\Users\Administrator\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
-      at ChildProcess.emit (events.js:127:13)
-      at maybeClose (internal/child_process.js:933:16)
+      at ProcessTermError.MessageError (C:\Users\77232\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:186:110)
+      at new ProcessTermError (C:\Users\77232\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:226:113)
+      at ChildProcess.<anonymous> (C:\Users\77232\AppData\Roaming\npm\node_modules\yarn\lib\cli.js:30281:17)
+      at ChildProcess.emit (events.js:180:13)
+      at maybeClose (internal/child_process.js:936:16)
       at Process.ChildProcess._handle.onexit (internal/child_process.js:220:5)
