@@ -15,7 +15,7 @@ $ yarn run dev
 $ yarn run build
 $ yarn start
 
-# generate static project
+# generate static project(需先执行这个，才能部署到github-pages)
 $ yarn run generate
 
 # deploy static project
