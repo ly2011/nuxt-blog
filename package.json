@@ -63,6 +63,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": ["yarn run lint", "git add"]
+    "*.{js,vue}": ["yarn run lint:fix", "git add"]
   }
 }
