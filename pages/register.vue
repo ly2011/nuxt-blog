@@ -2,18 +2,20 @@
   <div class="container login-container">
     <div class="login-wrap">
       <div class="login-inner">
-        <el-form :model="searchForm" ref="searchForm" :rules="rules" label-position="right" label-width="100px">
+        <el-form ref="searchForm" :model="searchForm" :rules="rules" label-position="right" label-width="100px">
           <el-form-item label="姓名" prop="userName">
             <el-input v-model.trim="searchForm.userName" placeholder="姓名" :maxlength="12"></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="password">
-            <el-input type="password" v-model.trim="searchForm.password" auto-complete="off" placeholder="密码" :minlength="6" :maxlength="16"></el-input>
+            <el-input v-model.trim="searchForm.password" type="password" auto-complete="off" placeholder="密码" :minlength="6" :maxlength="16"></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="renewpassword">
-            <el-input type="password" v-model.trim="searchForm.renewpassword" auto-complete="off" placeholder="确认密码" :minlength="6" :maxlength="16"></el-input>
+            <el-input v-model.trim="searchForm.renewpassword" type="password" auto-complete="off" placeholder="确认密码" :minlength="6" :maxlength="16"></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button type="primary" @click="onSubmit" :loading="saveBtnLoading">注册</el-button>
+            <el-button type="primary" :loading="saveBtnLoading" @click="onSubmit">
+              注册
+            </el-button>
           </el-form-item>
         </el-form>
       </div>
@@ -90,7 +92,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$refs.searchForm.validate(valid => {
+      this.$refs.searchForm.validate((valid) => {
         if (valid) {
           this.onRegister();
         } else {

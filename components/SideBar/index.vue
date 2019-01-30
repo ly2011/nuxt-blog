@@ -1,26 +1,50 @@
 <template>
   <aside id="sidebar">
     <el-card class="box-card">
-      <div slot="header" class="box-card-header">
+      <div
+        slot="header"
+        class="box-card-header"
+      >
         <span>个人信息</span>
       </div>
       <div class="box-card-content">
         <div class="box-card-content-header">
-          <a href="javascript:;" class="user_avatar"><img :src="userInfo.avatar_url" :alt="userInfo.loginname"></a>
-          <span class="user_name">{{userInfo.loginname}}</span>
+          <a
+            href="javascript:;"
+            class="user_avatar"
+          >
+            <img
+              :src="userInfo.avatar_url"
+              :alt="userInfo.loginname"
+            >
+          </a>
+          <span class="user_name">
+            {{ userInfo.loginname }}
+          </span>
         </div>
         <div class="board">
-          <span>积分：{{userInfo.score}}</span>
+          <span>积分：{{ userInfo.score }}</span>
         </div>
         <div class="bottom">
-          <span class="signature">“ 这家伙很懒，什么个性签名都没有留下。 ”</span>
+          <span class="signature">
+            “ 这家伙很懒，什么个性签名都没有留下。 ”
+          </span>
         </div>
       </div>
     </el-card>
 
-    <el-card class="box-card" v-show="accesstoken">
+    <el-card
+      v-show="accesstoken"
+      class="box-card"
+    >
       <div class="box-card-content">
-        <el-button type="success" size="small" @click="toCreateTopic">发布话题</el-button>
+        <el-button
+          type="success"
+          size="small"
+          @click="toCreateTopic"
+        >
+          发布话题
+        </el-button>
       </div>
     </el-card>
   </aside>
@@ -44,12 +68,12 @@ export default {
     async fetchUserInfo() {
       try {
         if (this.loginInfo.loginname) {
-          const userRes = await this.$store.dispatch(
+          await this.$store.dispatch(
             'user/getUserInfo',
             this.loginInfo.loginname
           );
         }
-      } catch (error) {}
+      } catch (error) { }
     },
     toCreateTopic() {
       this.$router.push({
@@ -95,4 +119,3 @@ export default {
   }
 }
 </style>
-

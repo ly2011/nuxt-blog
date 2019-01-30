@@ -7,7 +7,7 @@ axios.defaults.headers.common['Content-Type'] =
   'application/x-www-form-urlencoded';
 // 发送请求前处理request的数据
 axios.defaults.transformRequest = [
-  function(data) {
+  function (data) {
     return qs.stringify(data);
   }
 ];
@@ -19,7 +19,7 @@ const service = axios.create({
   baseURL: BASE_API, // api的base_url
   timeout: 15000, // 请求超时时间
   transformRequest: [
-    function(data) {
+    function (data) {
       // Do whatever you want to transform the data
       return qs.stringify(data);
     }
@@ -31,7 +31,7 @@ const service = axios.create({
 
 // request拦截器
 service.interceptors.request.use(
-  config => {
+  (config) => {
     // const accesstoken = '';
     if (!config.data) {
       config.data = {};
@@ -41,7 +41,7 @@ service.interceptors.request.use(
     // qs.stringify(config.data); }
     return config;
   },
-  error => {
+  (error) => {
     // Do something with request error console.log(error); // for debug
     Promise.reject(error);
   }
@@ -49,7 +49,7 @@ service.interceptors.request.use(
 
 // respone拦截器
 service.interceptors.response.use(
-  response => {
+  (response) => {
     // store.dispatch('HideListLoading');
     /**
      * code为非200是抛错 可结合自己业务进行修改
@@ -84,7 +84,7 @@ service.interceptors.response.use(
     // }
     return response.data;
   },
-  error => {
+  (error) => {
     // store.dispatch('HideListLoading');
     return Promise.reject(error);
   }
@@ -94,10 +94,10 @@ service.interceptors.response.use(
 export const get = (url, data) => {
   return axios
     .get(url, { params: data })
-    .then(res => {
+    .then((res) => {
       return Promise.resolve(res);
     })
-    .catch(err => {
+    .catch((err) => {
       return Promise.reject(err);
     });
 };
@@ -106,10 +106,10 @@ export const get = (url, data) => {
 export const post = (url, data) => {
   return axios
     .post(url, qs.stringify(data))
-    .then(res => {
+    .then((res) => {
       return Promise.resolve(res);
     })
-    .catch(err => {
+    .catch((err) => {
       return Promise.reject(err);
     });
 };

@@ -16,7 +16,8 @@
             <tt>`console.log('行内代码')`</tt>
           </li>
           <li>
-            <tt>```js\n code \n```</tt> 标记代码块</li>
+            <tt>```js\n code \n```</tt> 标记代码块
+          </li>
           <li>
             <tt>[内容](链接)</tt>
           </li>
@@ -25,7 +26,9 @@
           </li>
         </ol>
         <span>
-          <a href='https://segmentfault.com/markdown' target='_blank'>Markdown 文档</a>
+          <a href="https://segmentfault.com/markdown" target="_blank">
+            Markdown 文档
+          </a>
         </span>
       </div>
     </el-card>
@@ -37,8 +40,12 @@
       <div class="box-card-content">
         <ol>
           <li>尽量把话题要点浓缩到标题里</li>
-          <li>代码含义和报错可在
-            <a href="http://segmentfault.com/t/node.js">SegmentFault</a> 提问</li>
+          <li>
+            代码含义和报错可在
+            <a href="http://segmentfault.com/t/node.js">
+              SegmentFault
+            </a> 提问
+          </li>
         </ol>
       </div>
     </el-card>
@@ -68,4 +75,3 @@ export default {};
   }
 }
 </style>
-

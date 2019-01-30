@@ -4,18 +4,34 @@
       <div class="navbar-container">
         <el-menu mode="horizontal" @select="SelectMenu">
           <el-menu-item index="1">
-            <router-link :to="{ name: 'index', exact: true }">首页</router-link>
+            <router-link :to="{ name: 'index', exact: true }">
+              首页
+            </router-link>
           </el-menu-item>
           <el-menu-item index="2">
-            <router-link :to="{ name: 'my-messages' }">未读信息</router-link>
+            <router-link :to="{ name: 'my-messages' }">
+              未读信息
+            </router-link>
           </el-menu-item>
-          <el-menu-item index="3">新手入门</el-menu-item>
-          <el-menu-item index="4">API</el-menu-item>
-          <el-menu-item index="5">关于</el-menu-item>
-          <el-menu-item index="6">设置</el-menu-item>
+          <el-menu-item index="3">
+            新手入门
+          </el-menu-item>
+          <el-menu-item index="4">
+            API
+          </el-menu-item>
+          <el-menu-item index="5">
+            关于
+          </el-menu-item>
+          <el-menu-item index="6">
+            设置
+          </el-menu-item>
           <el-menu-item index="7">
-            <span v-if="accesstoken">退出</span>
-            <span v-else>登录</span>
+            <span v-if="accesstoken">
+              退出
+            </span>
+            <span v-else>
+              登录
+            </span>
           </el-menu-item>
         </el-menu>
       </div>
@@ -64,4 +80,3 @@ export default {
 <style lang="postcss" scoped>
 
 </style>
-

@@ -17,7 +17,7 @@ export const actions = {
   getTopic({ commit }, params = {}) {
     commit('setLoading', { loading: true });
     return getTopic(params)
-      .then(topic => {
+      .then((topic) => {
         let t_topic = {};
         if (topic.success) {
           t_topic = topic.data;
@@ -33,11 +33,11 @@ export const actions = {
     commit('setLoading', { loading: true });
     return new Promise((resolve, reject) =>
       addTopic(params)
-        .then(topic => {
+        .then((topic) => {
           commit('setLoading', { loading: false });
           resolve(topic);
         })
-        .catch(error => {
+        .catch((error) => {
           commit('setLoading', { loading: false });
           reject(error);
         })
@@ -47,11 +47,11 @@ export const actions = {
     commit('setLoading', { loading: true });
     return new Promise((resolve, reject) =>
       updateTopic(params)
-        .then(topic => {
+        .then((topic) => {
           commit('setLoading', { loading: false });
           resolve(topic);
         })
-        .catch(error => {
+        .catch((error) => {
           commit('setLoading', { loading: false });
           reject(error);
         })
@@ -61,11 +61,11 @@ export const actions = {
     commit('setLoading', { loading: true });
     return new Promise((resolve, reject) =>
       collectTopic(params)
-        .then(topic => {
+        .then((topic) => {
           commit('setLoading', { loading: false });
           resolve(topic);
         })
-        .catch(error => {
+        .catch((error) => {
           commit('setLoading', { loading: false });
           reject(error);
         })
@@ -75,11 +75,11 @@ export const actions = {
     commit('setLoading', { loading: true });
     return new Promise((resolve, reject) =>
       delTopic(params)
-        .then(topic => {
+        .then((topic) => {
           commit('setLoading', { loading: false });
           resolve(topic);
         })
-        .catch(error => {
+        .catch((error) => {
           commit('setLoading', { loading: false });
           reject(error);
         })

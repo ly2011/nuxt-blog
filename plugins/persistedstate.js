@@ -12,7 +12,7 @@ export default ({ store, isHMR, isServer, isClient, isDev }) => {
 
   // if (isClient) {
   if (!process.server) {
-    window.onNuxtReady(nuxt => {
+    window.onNuxtReady((nuxt) => {
       createPersistedState({
         key: 'vuex'
         // paths: [],

@@ -1,7 +1,10 @@
 <template>
   <div class="topic-add-container container">
     <nav-bar></nav-bar>
-    <div class="clearfix" id="main">
+    <div
+      id="main"
+      class="clearfix"
+    >
       <editor-side-bar></editor-side-bar>
       <div id="content">
         <div class="inner">
@@ -9,20 +12,37 @@
             <div class="searchForm">
               <div class="search-form-item">
                 <span>选择板块：</span>
-                <select name="tab" id="tab-value" v-model="searchForm.tab">
-                  <option v-for="(item, index) in tabs" :key="index" :value="item.value">{{item.key}}</option>
+                <select
+                  id="tab-value"
+                  v-model="searchForm.tab"
+                  name="tab"
+                >
+                  <option
+                    v-for="(item, index) in tabs"
+                    :key="index"
+                    :value="item.value"
+                  >
+                    {{ item.key }}
+                  </option>
                 </select>
               </div>
               <div class="search-form-item">
-                <textarea autofocus rows="1" id="title" placeholder="标题字数 10 字以上" v-model="searchForm.title" />
+                <textarea
+                  id="title"
+                  v-model="searchForm.title"
+                  autofocus
+                  rows="1"
+                  placeholder="标题字数 10 字以上"
+                />
               </div>
             </div>
           </div>
           <mavon-editor ref="topicContent" v-model.trim="searchForm.content" :ishljs="true" :toolbars="toolbars" />
 
-          <el-button type="primary" size="small" class="add-btn" @click="createTopic">提交</el-button>
+          <el-button type="primary" size="small" class="add-btn" @click="createTopic">
+            提交
+          </el-button>
         </div>
-
       </div>
     </div>
   </div>
@@ -42,14 +62,6 @@ export default {
     const { id = '' } = query;
     const params = { id, mdrender: false };
     await store.dispatch('topic/getTopic', params);
-  },
-  computed: {
-    // 从 store 的 state 对象中获取 topic
-    ...mapGetters({
-      topic: 'topic/topic',
-      accesstoken: 'user/accesstoken',
-      loading: 'user/loading'
-    })
   },
   data() {
     return {
@@ -94,6 +106,14 @@ export default {
         preview: true // 预览
       }
     };
+  },
+  computed: {
+    // 从 store 的 state 对象中获取 topic
+    ...mapGetters({
+      topic: 'topic/topic',
+      accesstoken: 'user/accesstoken',
+      loading: 'user/loading'
+    })
   },
   created() {
     if (this.topic) {
@@ -209,7 +229,7 @@ export default {
       input,
       select,
       textarea {
-        font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
       }
       button,
       input,
@@ -226,11 +246,11 @@ export default {
         margin-bottom: 5px;
       }
 
-      input[type='text'],
-      input[type='password'],
-      input[type='url'],
-      input[type='tel'],
-      input[type='search'],
+      input[type="text"],
+      input[type="password"],
+      input[type="url"],
+      input[type="tel"],
+      input[type="search"],
       select,
       textarea {
         display: inline-block;
@@ -245,11 +265,11 @@ export default {
         -moz-border-radius: 4px;
         border-radius: 4px;
       }
-      input[type='text'],
-      input[type='password'],
-      input[type='url'],
-      input[type='tel'],
-      input[type='search'],
+      input[type="text"],
+      input[type="password"],
+      input[type="url"],
+      input[type="tel"],
+      input[type="search"],
       textarea {
         background-color: #fff;
         border: 1px solid #ccc;
@@ -262,11 +282,11 @@ export default {
         transition: border linear 0.2s, box-shadow linear 0.2s;
       }
 
-      input[type='text']:focus,
-      input[type='password']:focus,
-      input[type='url']:focus,
-      input[type='tel']:focus,
-      input[type='search']:focus,
+      input[type="text"]:focus,
+      input[type="password"]:focus,
+      input[type="url"]:focus,
+      input[type="tel"]:focus,
+      input[type="search"]:focus,
       textarea:focus {
         border-color: rgba(82, 168, 236, 0.8);
         outline: 0;
@@ -279,7 +299,7 @@ export default {
           0 0 8px rgba(82, 168, 236, 0.6);
       }
 
-      input[type='file'],
+      input[type="file"],
       select {
         height: 30px;
         line-height: 30px;
@@ -310,4 +330,3 @@ export default {
   }
 }
 </style>
-

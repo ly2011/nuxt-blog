@@ -82,9 +82,8 @@ const store = () =>
   });
 export default store;
  */
-import { format } from 'date-fns';
-import { getTopics } from '~/api/cnode';
-import { process } from 'ipaddr.js';
+import { format } from 'date-fns'
+import { getTopics } from '~/api/cnode'
 
 export const state = () => ({
   topics: [],
@@ -95,75 +94,75 @@ export const state = () => ({
     limit: 12,
     total: 1000
   }
-});
+})
 
 export const actions = {
   getTopics({ commit, state }, params = {}) {
     // `store.dispatch()` 会返回 Promise,
     // 以便我们能够知道数据在合适更新
-    const { tab = '', page = 1, limit } = params;
-    let clear = true;
-    commit('setLoading', { loading: true });
-    const pageInfo = { ...state.pageInfo, ...{ page, limit } };
-    const searchParams = { ...pageInfo, ...{ tab } };
+    const { tab = '', page = 1, limit } = params
+    const clear = true
+    commit('setLoading', { loading: true })
+    const pageInfo = { ...state.pageInfo, ...{ page, limit } }
+    const searchParams = { ...pageInfo, ...{ tab } }
 
-    commit('setTab', { tab });
-    commit('setPageInfo', pageInfo);
+    commit('setTab', { tab })
+    commit('setPageInfo', pageInfo)
     return getTopics(searchParams)
-      .then(topics => {
-        commit('setTopics', { topics: topics.data, clear });
-        commit('setLoading', { loading: false });
+      .then((topics) => {
+        commit('setTopics', { topics: topics.data, clear })
+        commit('setLoading', { loading: false })
       })
       .catch(() => {
         if (state.tab === tab) {
           // 拉取更多失败
-          commit('setPageInfo', { page: state.pageInfo.page });
+          commit('setPageInfo', { page: state.pageInfo.page })
         }
-        commit('setLoading', { loading: false });
-      });
+        commit('setLoading', { loading: false })
+      })
   },
 
   setTab({ commit }, tab = '') {
-    commit('setTab', { tab });
+    commit('setTab', { tab })
   }
-};
+}
 
 export const mutations = {
   setTopics(state, { topics, clear }) {
     if (clear) {
-      state.topics = topics;
+      state.topics = topics
     } else {
-      state.topics.push(...topics);
+      state.topics.push(...topics)
     }
   },
 
   setLoading(state, { loading }) {
-    state.loading = loading;
+    state.loading = loading
   },
   setTab(state, { tab }) {
-    state.tab = tab;
+    state.tab = tab
   },
   setPageInfo(state, params = {}) {
-    state.pageInfo = { ...state.pageInfo, ...params };
+    state.pageInfo = { ...state.pageInfo, ...params }
   }
-};
+}
 
 export const getters = {
   topics(state) {
-    return state.topics.map(topic => {
+    return state.topics.map((topic) => {
       if (topic.create_at) {
-        topic.create_at = format(topic.create_at, 'YYYY-MM-DD');
+        topic.create_at = format(topic.create_at, 'YYYY-MM-DD')
       }
-      return topic;
-    });
+      return topic
+    })
   },
   tab(state) {
-    return state.tab;
+    return state.tab
   },
   loading(state) {
-    return state.loading;
+    return state.loading
   },
   pageInfo(state) {
-    return state.pageInfo;
+    return state.pageInfo
   }
-};
+}

@@ -1,6 +1,6 @@
 // topic.js
-import { Login, getMessages, getUserInfo } from '~/api/cnode';
-import { formatDate } from '~/utils/time';
+import { Login, getMessages, getUserInfo } from '~/api/cnode'
+// import { formatDate } from '~/utils/time';
 
 export const state = () => ({
   loginInfo: {},
@@ -11,102 +11,102 @@ export const state = () => ({
   },
   accesstoken: '',
   loading: false
-});
+})
 export const actions = {
   doLogin({ commit }, params = {}) {
-    commit('setLoading', { loading: true });
+    commit('setLoading', { loading: true })
     return new Promise((resolve, reject) =>
       Login(params)
-        .then(login_info => {
-          let loginInfo = {};
+        .then((login_info) => {
+          const loginInfo = {}
           if (login_info.success) {
-            loginInfo.loginname = login_info.loginname;
-            loginInfo.id = login_info.id;
-            loginInfo.avatar_url = login_info.avatar_url;
+            loginInfo.loginname = login_info.loginname
+            loginInfo.id = login_info.id
+            loginInfo.avatar_url = login_info.avatar_url
           }
-          commit('setLoginInfo', { loginInfo: loginInfo });
-          commit('setLoading', { loading: false });
-          commit('setAccessToken', params.accesstoken || '');
-          resolve(login_info);
+          commit('setLoginInfo', { loginInfo: loginInfo })
+          commit('setLoading', { loading: false })
+          commit('setAccessToken', params.accesstoken || '')
+          resolve(login_info)
         })
-        .catch(error => {
-          commit('setLoading', { loading: false });
-          reject(error);
+        .catch((error) => {
+          commit('setLoading', { loading: false })
+          reject(error)
         })
-    );
+    )
   },
   getMessages({ commit }, params = {}) {
-    commit('setLoading', { loading: true });
+    commit('setLoading', { loading: true })
     return new Promise((resolve, reject) =>
       getMessages(params)
-        .then(messages => {
-          commit('setMessages', messages.data);
-          commit('setLoading', { loading: false });
-          resolve(messages);
+        .then((messages) => {
+          commit('setMessages', messages.data)
+          commit('setLoading', { loading: false })
+          resolve(messages)
         })
-        .catch(error => {
-          commit('setLoading', { loading: false });
-          reject(error);
+        .catch((error) => {
+          commit('setLoading', { loading: false })
+          reject(error)
         })
-    );
+    )
   },
   getUserInfo({ commit }, loginname = '') {
     return new Promise((resolve, reject) =>
       getUserInfo(loginname)
-        .then(user_info => {
-          commit('setUserInfo', { userInfo: user_info.data });
-          resolve(messages);
+        .then((user_info) => {
+          commit('setUserInfo', { userInfo: user_info.data })
+          resolve(user_info)
         })
-        .catch(error => {
-          reject(error);
+        .catch((error) => {
+          reject(error)
         })
-    );
+    )
   },
   // 前端 登出
   fedLogOut({ commit }) {
-    return new Promise(resolve => {
-      clearUserInfo(commit);
-      resolve();
-    });
+    return new Promise((resolve) => {
+      clearUserInfo(commit)
+      resolve()
+    })
   }
-};
+}
 export const mutations = {
   setLoginInfo(state, { loginInfo }) {
-    state.loginInfo = loginInfo;
+    state.loginInfo = loginInfo
   },
   setLoading(state, { loading }) {
-    state.loading = loading;
+    state.loading = loading
   },
   setAccessToken: (state, accesstoken) => {
-    state.accesstoken = accesstoken;
+    state.accesstoken = accesstoken
   },
   setMessages: (state, messages) => {
-    state.messages = messages;
+    state.messages = messages
   },
   setUserInfo(state, { userInfo }) {
-    state.userInfo = userInfo;
+    state.userInfo = userInfo
   }
-};
+}
 
 export const getters = {
   loginInfo(state) {
-    return state.loginInfo;
+    return state.loginInfo
   },
   loading(state) {
-    return state.loading;
+    return state.loading
   },
   messages(state) {
-    return state.messages;
+    return state.messages
   },
   userInfo(state) {
-    return state.userInfo;
+    return state.userInfo
   },
   accesstoken(state) {
-    return state.accesstoken;
+    return state.accesstoken
   }
-};
+}
 
 // 清空用户信息
 function clearUserInfo(commit) {
-  commit('setAccessToken', '');
+  commit('setAccessToken', '')
 }

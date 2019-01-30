@@ -2,7 +2,7 @@
   <div class="container login-container">
     <div class="login-wrap">
       <div class="login-inner">
-        <el-form :model="searchForm" ref="searchForm" :rules="rules" label-position="right" label-width="120px">
+        <el-form ref="searchForm" :model="searchForm" :rules="rules" label-position="right" label-width="120px">
           <el-form-item label="accesstoken" prop="accesstoken">
             <el-input v-model.trim="searchForm.accesstoken" placeholder="accesstoken" :maxlength="36"></el-input>
           </el-form-item>
@@ -13,7 +13,9 @@
             <el-input type="password" v-model.trim="searchForm.password" auto-complete="off" placeholder="密码" :minlength="6" :maxlength="16"></el-input>
           </el-form-item> -->
           <el-form-item>
-            <el-button type="primary" @click="onSubmit" :loading="saveBtnLoading">登录</el-button>
+            <el-button type="primary" :loading="saveBtnLoading" @click="onSubmit">
+              登录
+            </el-button>
             <!-- <el-button type="success" @click="onLoginByGithub" :loading="saveBtnLoading">通过Github登录</el-button> -->
           </el-form-item>
         </el-form>
@@ -105,7 +107,7 @@ export default {
   },
   methods: {
     onSubmit() {
-      this.$refs.searchForm.validate(valid => {
+      this.$refs.searchForm.validate((valid) => {
         if (valid) {
           this.onLogin();
         } else {

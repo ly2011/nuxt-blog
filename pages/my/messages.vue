@@ -8,11 +8,15 @@
         </div>
         <div class="box-card-content">
           <template v-if="messages.hasnot_read_messages.length > 0">
-            <div class="box-card-item" v-for="msg in messages.has_read_messages" :key="msg.id">
+            <div v-for="msg in messages.has_read_messages" :key="msg.id" class="box-card-item">
               <span>
-                <router-link :to="{}">{{msg.author.loginname}}</router-link>
+                <router-link :to="{}">
+                  {{ msg.author.loginname }}
+                </router-link>
                 回复了你的话题
-                <router-link :to="{name: 'topic', query: {id: msg.id}}">{{msg.topic.title}}</router-link>
+                <router-link :to="{name: 'topic', query: {id: msg.id}}">
+                  {{ msg.topic.title }}
+                </router-link>
               </span>
             </div>
           </template>
@@ -23,18 +27,21 @@
       </el-card>
     </div>
     <div class="has_read_messages">
-
       <el-card class="box-card">
         <div slot="header" class="box-card-header">
           <span>过往信息</span>
         </div>
         <div class="box-card-content">
           <template v-if="messages.has_read_messages.length > 0">
-            <div class="box-card-item" v-for="msg in messages.has_read_messages" :key="msg.id">
+            <div v-for="msg in messages.has_read_messages" :key="msg.id" class="box-card-item">
               <span>
-                <router-link :to="{}">{{msg.author.loginname}}</router-link>
+                <router-link :to="{}">
+                  {{ msg.author.loginname }}
+                </router-link>
                 回复了你的话题
-                <router-link :to="{name: 'topic', query: {id: `${msg.topic.id}#${msg.reply.id}`}}">{{msg.topic.title}}</router-link>
+                <router-link :to="{name: 'topic', query: {id: `${msg.topic.id}#${msg.reply.id}`}}">
+                  {{ msg.topic.title }}
+                </router-link>
               </span>
             </div>
           </template>
@@ -131,5 +138,3 @@ export default {
   }
 }
 </style>
-
-
