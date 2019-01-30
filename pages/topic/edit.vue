@@ -1,6 +1,5 @@
 <template>
   <div class="topic-add-container container">
-    <nav-bar></nav-bar>
     <div
       id="main"
       class="clearfix"
@@ -34,7 +33,7 @@
                   rows="1"
                   placeholder="标题字数 10 字以上"
                 />
-              </div>
+                </div>
             </div>
           </div>
           <mavon-editor ref="topicContent" v-model.trim="searchForm.content" :ishljs="true" :toolbars="toolbars" />
@@ -50,20 +49,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import NavBar from '~/components/NavBar';
 import EditorSideBar from '~/components/SideBar/editor_sidebar';
 export default {
   components: {
-    NavBar,
     EditorSideBar
   },
-  async asyncData({ store, route, query }) {
+  async asyncData ({ store, route, query }) {
     // 触发 action 后, 会返回 Promise
     const { id = '' } = query;
     const params = { id, mdrender: false };
     await store.dispatch('topic/getTopic', params);
   },
-  data() {
+  data () {
     return {
       searchForm: {
         tab: '',
@@ -115,7 +112,7 @@ export default {
       loading: 'user/loading'
     })
   },
-  created() {
+  created () {
     if (this.topic) {
       this.searchForm.topic_id = this.topic.id || null;
       this.searchForm.tab = this.topic.tab || '';
@@ -124,7 +121,7 @@ export default {
     }
   },
   methods: {
-    async createTopic() {
+    async createTopic () {
       if (!this.accesstoken) {
         this.$message({
           message: '您还没登录，请先去登录再来发表文章',

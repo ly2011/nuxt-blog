@@ -91,7 +91,7 @@ export const state = () => ({
   loading: false,
   pageInfo: {
     page: 1,
-    limit: 12,
+    limit: 15,
     total: 1000
   }
 })
@@ -100,7 +100,7 @@ export const actions = {
   getTopics({ commit, state }, params = {}) {
     // `store.dispatch()` 会返回 Promise,
     // 以便我们能够知道数据在合适更新
-    const { tab = '', page = 1, limit } = params
+    const { tab = '', page = 1, limit = state.pageInfo.limit } = params
     const clear = true
     commit('setLoading', { loading: true })
     const pageInfo = { ...state.pageInfo, ...{ page, limit } }
@@ -108,6 +108,7 @@ export const actions = {
 
     commit('setTab', { tab })
     commit('setPageInfo', pageInfo)
+
     return getTopics(searchParams)
       .then((topics) => {
         commit('setTopics', { topics: topics.data, clear })

@@ -1,6 +1,5 @@
 <template>
   <div class="msg-container">
-    <nav-bar></nav-bar>
     <div class="hasnot_read_messages">
       <el-card class="box-card">
         <div slot="header" class="box-card-header">
@@ -56,11 +55,7 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import NavBar from '~/components/NavBar';
 export default {
-  components: {
-    NavBar
-  },
   computed: {
     // 从 store 的 state 对象中获取 topic
     ...mapGetters({

@@ -1,9 +1,10 @@
 {
   "name": "nuxt-blog",
   "version": "1.0.0",
-  "description": "My stunning Nuxt.js project",
+  "description": "CNode：Node.js专业中文社区",
   "author": "ly2011",
   "private": true,
+  "keywords": ["vue", "nuxt", "nuxt2", "nodejs", "node", "express", "connect", "socket.io"],
   "scripts": {
     "dev": "nuxt",
     "build": "nuxt build",

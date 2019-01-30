@@ -1,6 +1,5 @@
 <template>
   <section class="topics-container container">
-    <nav-bar></nav-bar>
     <div
       id="main"
       class="clearfix"
@@ -8,7 +7,10 @@
       <side-bar></side-bar>
       <div id="content">
         <header class="header">
-          <el-tabs @tab-click="changeTab">
+          <el-tabs
+            v-model="curTab"
+            @tab-click="changeTab"
+          >
             <el-tab-pane
               v-for="(tab, index) in topTabs"
               :key="index"
@@ -80,7 +82,7 @@
           >
             <el-pagination
               :current-page="pageInfo.page"
-              :page-size="pageInfo.size"
+              :page-size="pageInfo.limit"
               layout="total, prev, pager, next, jumper, slot"
               :total="pageInfo.total"
               @current-change="handleCurrentChange"
@@ -103,22 +105,20 @@
 <script>
 import { topTabs } from '~/utils/tabs';
 import { mapGetters } from 'vuex';
-
-import NavBar from '~/components/NavBar';
 import SideBar from '~/components/SideBar';
 
 export default {
   components: {
-    NavBar,
     SideBar
   },
-  async asyncData({ store, route, params }) {
+  async asyncData ({ store, route, params }) {
     // 触发 action 后, 会返回 Promise
     await store.dispatch('topics/getTopics');
     // await store.dispatch('user/getUserInfo')
   },
-  data() {
+  data () {
     return {
+      curTab: this.tab,
       topTabs
     };
   },
@@ -131,8 +131,14 @@ export default {
       pageInfo: 'topics/pageInfo'
     })
   },
+  watch: {
+    tab (val) { // 修复页面刷新后tab栏又回到了第一个
+      this.curTab = val
+      // console.log('w-tab: ', val, this.curTab)
+    }
+  },
   methods: {
-    changeTab(tab, event) {
+    changeTab (tab, event) {
       const { name } = tab;
       if (name === this.tab) {
         return;
@@ -140,18 +146,18 @@ export default {
       const params = { tab: name, page: 1 };
       this.fetchTopics(params);
     },
-    fetchTopics(params = {}) {
+    fetchTopics (params = {}) {
       if (this.loading) {
         return;
       }
       this.$store.dispatch('topics/getTopics', params);
     },
-    handleCurrentChange(val) {
+    handleCurrentChange (val) {
       const params = { tab: this.tab, page: val || 1 };
       this.fetchTopics(params);
     },
 
-    gotoDetail(row) {
+    gotoDetail (row) {
       const { id } = row;
       this.$router.push({
         name: 'topic',
@@ -162,16 +168,37 @@ export default {
 };
 </script>
 
-<style lang="postcss">
+<style lang="postcss" scoped>
 .topics-container {
   .header {
-    margin-top: 15px;
     padding: 10px;
+    padding-left: 10px;
     background-color: #f6f6f6;
     border-radius: 3px 3px 0 0;
-    .el-tabs {
-      .el-tabs__header {
-        margin: 0;
+    /deep/ {
+      .el-tabs {
+        .el-tabs__header {
+          margin: 0;
+        }
+        .el-tabs__nav-wrap:after {
+          height: 0;
+        }
+        .el-tabs__item {
+          margin: 0 10px;
+          padding: 0;
+          line-height: 1;
+          height: auto;
+          color: #80bd01;
+          &.is-active {
+            background-color: #80bd01;
+            color: #fff;
+            padding: 3px 4px;
+            border-radius: 3px;
+          }
+          &.is-bottom:nth-child(2),
+          &.is-top:nth-child(2) {
+          }
+        }
       }
     }
   }

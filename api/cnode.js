@@ -1,12 +1,7 @@
-import request from '~/utils/request';
+import request from '~/utils/request'
 
-const BASE_URL = 'https://cnodejs.org/api/v1';
-export const getTopics = ({
-  page = 1,
-  tab = 'share',
-  limit = 12,
-  mdrender = 'false'
-} = {}) =>
+const BASE_URL = 'https://cnodejs.org/api/v1'
+export const getTopics = ({ page = 1, tab = 'share', limit = 12, mdrender = 'false' } = {}) =>
   request({
     baseURL: BASE_URL,
     method: 'get',
@@ -17,18 +12,18 @@ export const getTopics = ({
       limit,
       mdrender
     }
-  });
+  })
 
 export const getTopic = (params = {}) => {
-  const { id = '' } = params;
-  delete params.id;
+  const { id = '' } = params
+  delete params.id
   return request({
     baseURL: BASE_URL,
     method: 'get',
     url: `/topic/${id}`,
     params
-  });
-};
+  })
+}
 
 export const Login = (params = {}) =>
   request({
@@ -36,7 +31,7 @@ export const Login = (params = {}) =>
     method: 'post',
     url: '/accesstoken',
     data: params
-  });
+  })
 
 export const getMessages = (params = {}) =>
   request({
@@ -44,14 +39,14 @@ export const getMessages = (params = {}) =>
     method: 'get',
     url: '/messages',
     params: params
-  });
+  })
 
 export const getUserInfo = (loginname = '') =>
   request({
     baseURL: BASE_URL,
     method: 'get',
     url: `/user/${loginname}`
-  });
+  })
 
 /* 新建主题 */
 export const addTopic = (params = {}) =>
@@ -60,7 +55,7 @@ export const addTopic = (params = {}) =>
     method: 'post',
     url: '/topics',
     data: params
-  });
+  })
 
 export const updateTopic = (params = {}) =>
   request({
@@ -68,7 +63,7 @@ export const updateTopic = (params = {}) =>
     method: 'post',
     url: '/topics/update',
     data: params
-  });
+  })
 
 /* 收藏主题 */
 export const collectTopic = (params = {}) =>
@@ -77,7 +72,7 @@ export const collectTopic = (params = {}) =>
     method: 'post',
     url: '/topic_collect/collect',
     data: params
-  });
+  })
 
 /* 取消主题 */
 export const delTopic = (params = {}) =>
@@ -86,4 +81,4 @@ export const delTopic = (params = {}) =>
     method: 'post',
     url: '/topic_collect/de_collect',
     data: params
-  });
+  })

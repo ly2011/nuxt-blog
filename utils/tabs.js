@@ -5,4 +5,4 @@ export const topTabs = [
   { title: '问答', tab: 'ask' },
   { title: '招聘', tab: 'job' },
   { title: '客户端测试', tab: 'dev' }
-];
+]
