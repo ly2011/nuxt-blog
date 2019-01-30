@@ -2,6 +2,7 @@
   "name": "nuxt-blog",
   "version": "1.0.0",
   "description": "CNode：Node.js专业中文社区",
+  "homepage": "https://ly2011.github.io/nuxt-blog",
   "author": "ly2011",
   "private": true,
   "keywords": ["vue", "nuxt", "nuxt2", "nodejs", "node", "express", "connect", "socket.io"],
@@ -62,6 +63,6 @@
     }
   },
   "lint-staged": {
-    "*.{js,vue}": ["yarn run lint:fix", "git add"]
+    "*.{js,vue}": ["yarn run lint", "git add"]
   }
 }
