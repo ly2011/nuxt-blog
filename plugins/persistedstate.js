@@ -1,7 +1,7 @@
 import createPersistedState from 'vuex-persistedstate';
 
-import * as Cookies from 'js-cookie';
-import cookie from 'cookie';
+// import * as Cookies from 'js-cookie';
+// import cookie from 'cookie';
 
 export default ({ store, isHMR, isServer, isClient, isDev }) => {
   // In case of HMR, mutation occurs before nuxReady, so previously saved state
@@ -10,7 +10,8 @@ export default ({ store, isHMR, isServer, isClient, isDev }) => {
   // vuex-persistedstate plugin
   if (isHMR) return;
 
-  if (isClient) {
+  // if (isClient) {
+  if (!process.server) {
     window.onNuxtReady(nuxt => {
       createPersistedState({
         key: 'vuex'

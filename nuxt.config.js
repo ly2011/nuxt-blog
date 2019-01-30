@@ -1,4 +1,4 @@
-const styleLoader = require('nuxt/lib/builder/webpack/style-loader.js');
+// const styleLoader = require('nuxt/lib/builder/webpack/style-loader.js');
 
 const pkg = require('./package');
 
@@ -126,10 +126,10 @@ module.exports = {
           loader: 'eslint-loader',
           exclude: /(node_modules)/
         });
-        config.module.rules.push({
-          test: /\.sss$/,
-          use: styleLoader.call(this, 'css', 'postcss-loader')
-        });
+        // config.module.rules.push({
+        //   test: /\.sss$/,
+        //   use: styleLoader.call(this, 'css', 'postcss-loader')
+        // });
       }
     }
   }
