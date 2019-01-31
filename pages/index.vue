@@ -4,7 +4,7 @@
       id="main"
       class="clearfix"
     >
-      <side-bar></side-bar>
+      <side-bar />
       <div id="content">
         <header class="header">
           <el-tabs

@@ -6,6 +6,9 @@
     >
       <editor-side-bar></editor-side-bar>
       <div id="content">
+        <div class="header">
+          <breadcrumb :breadcrumb="breadcrumb" />
+        </div>
         <div class="inner">
           <div class="search-form">
             <div class="searchForm">
@@ -36,7 +39,7 @@
                 </div>
             </div>
           </div>
-          <mavon-editor ref="topicContent" v-model.trim="searchForm.content" :ishljs="true" :toolbars="toolbars" />
+          <mavon-editor ref="topicContent" v-model.trim="searchForm.content" :ishljs="true" :subfield="subfield" :toolbars="toolbars" />
 
           <el-button type="primary" size="small" class="add-btn" @click="createTopic">
             提交
@@ -50,10 +53,11 @@
 <script>
 import { mapGetters } from 'vuex';
 import EditorSideBar from '~/components/SideBar/editor_sidebar';
+import Breadcrumb from '~/components/Breadcrumb'
 export default {
   components: {
-    // NavBar,
-    EditorSideBar
+    EditorSideBar,
+    Breadcrumb
   },
   data () {
     return {
@@ -95,7 +99,12 @@ export default {
         help: true, // 帮助
         fullscreen: true, // 全屏编辑
         preview: true // 预览
-      }
+      },
+      subfield: false,
+      breadcrumb: [
+        { title: '主页', active: false },
+        { title: '发布话题', active: true }
+      ]
     };
   },
   computed: {
@@ -184,6 +193,11 @@ export default {
 
 <style lang="postcss" scoped>
 #content {
+  .header {
+    padding: 10px;
+    background-color: #f6f6f6;
+    border-radius: 3px 3px 0 0;
+  }
   .inner {
     background-color: #fff;
     padding: 10px;
@@ -299,6 +313,12 @@ export default {
       textarea:focus {
         box-shadow: 0 0 2px rgba(60, 60, 60, 0.5);
       }
+    }
+  }
+
+  /deep/ {
+    .v-note-wrapper {
+      min-height: 490px;
     }
   }
 

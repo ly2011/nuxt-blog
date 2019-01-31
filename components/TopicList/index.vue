@@ -130,8 +130,9 @@ export default {
     toTopicDetail (row) {
       const { id } = row;
       this.$router.push({
-        name: 'topic',
-        query: { id }
+        // name: 'topic',
+        // params: { id }
+        path: `/topic/${id}`
       });
     }
   }

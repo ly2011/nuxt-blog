@@ -208,7 +208,7 @@ export default {
     background-color: #fff;
     padding: 10px;
     border-top: 1px solid #e5e5e5;
-    border-radius: 0 0 3px 3px;
+    border-radius: 3px;
 
     #title {
       width: 98%;

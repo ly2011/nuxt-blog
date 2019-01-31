@@ -1,29 +1,62 @@
 <template>
-  <section class="container">
-    <div>
-      <header class="header">
-        <span class="title" v-text="topic.title"></span>
-        <div class="changes clearfix">
-          <span>发布于 {{ topic.create_at }}</span>
-          <span>作者 {{ topic.author && topic.author.loginname }}</span>
-          <span>{{ topic.visit_count }} 次浏览</span>
-          <span>最后一次编辑是 {{ topic.last_reply_at }}</span>
-          <span>来自 {{ topic.tabName }}</span>
-          <el-button v-if="topic.is_collect" type="info" size="small" class="pull-right" @click="delCollect">
-            取消收藏
-          </el-button>
-          <el-button v-else type="success" size="small" class="pull-right" @click="toCollect">
-            收藏
-          </el-button>
-        </div>
-        <div v-show="isMe" class="manage_topic">
-          <i class="edit-btn el-icon-edit-outline" @click="toEdit"></i>
-          <i class="del-btn el-icon-delete" @click="toDel"></i>
-        </div>
-      </header>
+  <section class="topic-container container">
+    <div
+      id="main"
+      class="clearfix"
+    >
+      <side-bar />
+      <div id="content">
+        <header class="header">
+          <span
+            class="title"
+            v-text="topic.title"
+          ></span>
+          <div class="changes clearfix">
+            <span>发布于 {{ topic.create_at }}</span>
+            <span>作者 {{ topic.author && topic.author.loginname }}</span>
+            <span>{{ topic.visit_count }} 次浏览</span>
+            <span>最后一次编辑是 {{ topic.last_reply_at }}</span>
+            <span>来自 {{ topic.tabName }}</span>
+            <el-button
+              v-if="accesstoken && topic.is_collect"
+              type="info"
+              size="small"
+              class="pull-right"
+              @click="delCollect"
+            >
+              取消收藏
+            </el-button>
+            <el-button
+              v-else-if="accesstoken && !topic.is_collect"
+              type="success"
+              size="small"
+              class="pull-right"
+              @click="toCollect"
+            >
+              收藏
+            </el-button>
+          </div>
+          <div
+            v-show="isMe"
+            class="manage_topic"
+          >
+            <i
+              class="edit-btn el-icon-edit-outline"
+              @click="toEdit"
+            ></i>
+            <i
+              class="del-btn el-icon-delete"
+              @click="toDel"
+            ></i>
+          </div>
+        </header>
 
-      <div class="topic">
-        <div class="topic_content" v-html="topic.content"></div>
+        <div class="topic">
+          <div
+            class="topic_content"
+            v-html="topic.content"
+          ></div>
+        </div>
       </div>
     </div>
   </section>
@@ -31,11 +64,16 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import SideBar from '~/components/SideBar';
 export default {
-  async asyncData({ store, route, query }) {
+  components: {
+    SideBar
+  },
+  async asyncData ({ store, route, query, params }) {
+    // console.log('params: ', params)
     // 触发 action 后, 会返回 Promise
-    const { id = '' } = query;
-    const params = { id };
+    // const { id = '' } = query;
+    // const params = { id };
     await store.dispatch('topic/getTopic', params);
   },
 
@@ -47,7 +85,7 @@ export default {
       loginInfo: 'user/loginInfo',
       accesstoken: 'user/accesstoken'
     }),
-    isMe() {
+    isMe () {
       if (this.loginInfo && this.topic.author) {
         return this.topic.author.loginname === this.loginInfo.loginname;
       }
@@ -55,7 +93,7 @@ export default {
     }
   },
   methods: {
-    async toCollect() {
+    async toCollect () {
       const params = {
         accesstoken: this.accesstoken,
         topic_id: this.topic.id
@@ -82,7 +120,7 @@ export default {
         });
       }
     },
-    async delCollect() {
+    async delCollect () {
       const params = {
         accesstoken: this.accesstoken,
         topic_id: this.topic.id
@@ -109,7 +147,7 @@ export default {
         });
       }
     },
-    toEdit() {
+    toEdit () {
       this.$router.push({
         name: 'topic-edit',
         query: {
@@ -117,7 +155,7 @@ export default {
         }
       });
     },
-    toDel() {}
+    toDel () { }
   }
 };
 </script>
@@ -142,7 +180,7 @@ export default {
       font-size: 12px;
       color: #838383;
       span:before {
-        content: '•';
+        content: "•";
       }
     }
 
