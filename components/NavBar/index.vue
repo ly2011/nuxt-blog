@@ -2,16 +2,32 @@
   <div class="navbar">
     <div class="navbar-inner">
       <div class="navbar-container">
-        <a
-          href="javascript:;"
-          class="brand"
-          @click="toHome"
-        >
-          <img
-            src="~/assets/img/cnodejs_light.svg"
-            alt="cnodejs"
-          />
-        </a>
+        <div class="logo">
+          <a
+            href="javascript:;"
+            class="brand"
+            @click="toHome"
+          >
+            <img
+              src="~/assets/img/cnodejs_light.svg"
+              alt="cnodejs"
+            />
+          </a>
+          <el-form
+            :model="searchData"
+            @submit.native.prevent
+          >
+            <el-input
+              v-model="searchData.q"
+              placeholder="请输入内容"
+              prefix-icon="el-icon-search"
+              size="mini"
+              @keyup.enter="toSearch"
+            >
+            </el-input>
+          </el-form>>
+        </div>
+
         <ul class="nav">
           <template v-for="nav in navbarList">
             <li
@@ -138,7 +154,10 @@ const navBars = [
 export default {
   data () {
     return {
-      navBars: JSON.parse(JSON.stringify(navBars))
+      navBars: JSON.parse(JSON.stringify(navBars)),
+      searchData: {
+        q: ''
+      }
     }
   },
   computed: {
@@ -147,7 +166,7 @@ export default {
     }),
     navbarList () {
       const tmpNavBars = JSON.parse(JSON.stringify(navBars))
-      const needDeleteWhenLogin = ['my-messages', 'setting', 'register', 'login']
+      const needDeleteWhenLogin = ['register', 'login']
       const needDeleteWhenNotLogin = ['my-messages', 'logout']
 
       const newNavBars = tmpNavBars.map((nav) => {
@@ -180,6 +199,9 @@ export default {
       this.$router.push({
         name: 'index'
       });
+    },
+    toSearch () {
+      window.location.href = `https://www.google.com.hk/#hl=zh-CN&q=site:cnodejs.org+${this.searchData.q}`
     },
     SelectMenu (key, keyPath) {
       if (key === '7') {
@@ -222,7 +244,25 @@ export default {
     display: flex;
     justify-content: space-between;
   }
-
+  .logo {
+    display: flex;
+    align-items: center;
+    /deep/ {
+      .el-input__inner {
+        background-color: #888;
+        color: #666;
+        border-radius: 15px;
+        border-color: #888;
+      }
+      .el-input.is-active .el-input__inner,
+      .el-input__inner:hover,
+      .el-input__inner:focus {
+        background-color: #fff;
+        border-color: #fff;
+        outline: 0;
+      }
+    }
+  }
   .brand {
     display: block;
     margin-left: -20px;

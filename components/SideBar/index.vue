@@ -42,6 +42,7 @@
           <a
             href="javascript:;"
             class="user_avatar"
+            @click="toUserInfo"
           >
             <img
               :src="userInfo.avatar_url"
@@ -114,6 +115,11 @@ export default {
       this.$router.push({
         name: 'login'
       })
+    },
+    toUserInfo () {
+      this.$router.push({
+        path: `/user/${this.loginInfo.loginname}`
+      });
     }
   }
 };

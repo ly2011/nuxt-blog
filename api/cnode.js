@@ -82,3 +82,11 @@ export const delTopic = (params = {}) =>
     url: '/topic_collect/de_collect',
     data: params
   })
+
+/* 话题收藏数 */
+export const getTopicCollect = (loginname = '') =>
+  request({
+    baseURL: BASE_URL,
+    method: 'get',
+    url: `/topic_collect/${loginname}`
+  })
