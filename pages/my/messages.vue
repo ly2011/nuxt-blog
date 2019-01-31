@@ -61,7 +61,7 @@
                   回复了你的话题
                   <!-- <router-link :to="{name: 'topic', query: {id: `${msg.topic.id}#${msg.reply.id}`}}"> -->
                   <router-link
-                    :to="{ path: `/topic/${msg.id}` }"
+                    :to="{ path: `/topic/${msg.topic.id}` }"
                     target="_blank"
                   >
                     {{ msg.topic.title }}
