@@ -228,6 +228,14 @@ input:-webkit-autofill {
   color: #c0c4cc;
 }
 
+body,
+input,
+p,
+textarea {
+  font-size: 14px;
+  word-break: break-word;
+}
+
 .container {
   /*   min-height: 100vh;
   display: flex;
@@ -311,7 +319,9 @@ input:-webkit-autofill {
     padding: 10px;
   }
 }
-
+.pull-left {
+  float: left;
+}
 .pull-right {
   float: right;
 }

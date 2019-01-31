@@ -21,7 +21,8 @@
         </header>
 
         <div class="table-list">
-          <el-table
+          <topic-list :topics="topics" />
+          <!-- <el-table
             v-loading.body="loading"
             :data="topics"
             style="width: 100%"
@@ -74,7 +75,7 @@
                 </el-button>
               </template>
             </el-table-column>
-          </el-table>
+          </el-table> -->
 
           <div
             v-show="pageInfo.total"
@@ -106,10 +107,12 @@
 import { topTabs } from '~/utils/tabs';
 import { mapGetters } from 'vuex';
 import SideBar from '~/components/SideBar';
+import TopicList from '~/components/TopicList';
 
 export default {
   components: {
-    SideBar
+    SideBar,
+    TopicList
   },
   async asyncData ({ store, route, params }) {
     // 触发 action 后, 会返回 Promise

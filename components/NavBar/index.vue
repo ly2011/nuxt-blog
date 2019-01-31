@@ -5,6 +5,7 @@
         <a
           href="javascript:;"
           class="brand"
+          @click="toHome"
         >
           <img
             src="~/assets/img/cnodejs_light.svg"
@@ -174,6 +175,11 @@ export default {
           name: 'index'
         });
       }, 2000);
+    },
+    toHome () {
+      this.$router.push({
+        name: 'index'
+      });
     },
     SelectMenu (key, keyPath) {
       if (key === '7') {

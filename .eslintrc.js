@@ -30,6 +30,7 @@ module.exports = {
     'vue/no-v-html': 0,
     'vue/html-indent': 0,
     'vue/multiline-html-element-content-newline': 0,
+    'vue/singleline-html-element-content-newline': 0,
     'space-before-function-paren': 0
   }
 }
