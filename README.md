@@ -34,3 +34,7 @@ $ git subtree push --prefix=dist origin gh-pages
 2.  [Website not built properly after running 'nuxt generate'](https://github.com/nuxt/nuxt.js/issues/2636)
 3.  [https://github.com/Zurnaz/nuxt-example/blob/master/nuxt.config.js](https://github.com/Zurnaz/nuxt-example/blob/master/nuxt.config.js)
 4.  [https://github.com/rockcs1992/Personal-Website/blob/master/nuxt.config.js](https://github.com/rockcs1992/Personal-Website/blob/master/nuxt.config.js)
+
+## 参考文档
+
+1. [路由](https://zh.nuxtjs.org/guide/routing/)
