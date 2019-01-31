@@ -40,6 +40,10 @@ a.topic_title {
 .panel .inner a {
   color: #778087;
 }
+.panel .inner {
+  padding: 10px;
+  border-radius: 0 0 3px 3px;
+}
 .panel .header {
   padding: 10px;
   background-color: #f6f6f6;
@@ -56,4 +60,9 @@ a.topic_title {
 .panel .inner.user_info {
   padding: 10px;
   border-top: 1px solid #e5e5e5;
+}
+.cell {
+  position: relative;
+  padding: 10px 0 10px 10px;
+  font-size: 14px;
 }
