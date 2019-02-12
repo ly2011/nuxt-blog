@@ -1,9 +1,6 @@
 <template>
   <section class="user-info-container container">
-    <div
-      id="main"
-      class="clearfix"
-    >
+    <div id="main">
       <side-bar />
       <div id="content">
         <div class="panel">
@@ -137,6 +134,10 @@ export default {
 </script>
 
 <style lang="postcss" scoped>
+.user_profile {
+  margin-top: 20px;
+  clear: left;
+}
 .panel {
   .user_big_avatar {
     float: left;

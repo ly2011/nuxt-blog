@@ -1,9 +1,6 @@
 <template>
   <div class="msg-container container">
-    <div
-      id="main"
-      class="clearfix"
-    >
+    <div id="main">
       <side-bar />
       <div id="content">
         <div class="panel">

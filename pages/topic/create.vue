@@ -1,9 +1,6 @@
 <template>
   <div class="topic-add-container container">
-    <div
-      id="main"
-      class="clearfix"
-    >
+    <div id="main">
       <editor-side-bar></editor-side-bar>
       <div id="content">
         <div class="header">

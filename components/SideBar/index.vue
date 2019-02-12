@@ -2,6 +2,7 @@
   <aside id="sidebar">
     <el-card
       v-if="!accesstoken"
+      shadow="never"
       class="box-card"
     >
       <div
@@ -29,6 +30,7 @@
     </el-card>
     <el-card
       v-if="accesstoken"
+      shadow="never"
       class="box-card"
     >
       <div
@@ -50,11 +52,17 @@
             >
           </a>
           <span class="user_name">
-            {{ userInfo.loginname }}
+            <a
+              class="dark"
+              href="javascript:;"
+              @click="toUserInfo"
+            >
+              {{ userInfo.loginname }}
+            </a>
           </span>
         </div>
         <div class="board">
-          <span>积分：{{ userInfo.score }}</span>
+          <span class="big">积分：{{ userInfo.score }}</span>
         </div>
         <div class="bottom">
           <span class="signature">
@@ -66,6 +74,7 @@
 
     <el-card
       v-if="accesstoken"
+      shadow="never"
       class="box-card"
     >
       <div class="box-card-content">
@@ -78,12 +87,94 @@
         </el-button>
       </div>
     </el-card>
+
+    <el-card
+      v-if="accesstoken"
+      shadow="never"
+      class="box-card"
+    >
+      <div
+        slot="header"
+        class="box-card-header"
+      >
+        <span>友情社区</span>
+      </div>
+      <div class="box-card-content">
+        <ol class="friendship-community">
+          <li>
+            <a
+              href="https://ruby-china.org/"
+              target="_blank"
+            >
+              <img src="//static2.cnodejs.org/public/images/ruby-china-20150529.png">
+            </a>
+          </li>
+          <div class="sep10"></div>
+          <li>
+            <a
+              href="http://golangtc.com/"
+              target="_blank"
+            >
+              <img src="//static2.cnodejs.org/public/images/golangtc-logo.png">
+            </a>
+          </li>
+          <div class="sep10"></div>
+          <li>
+            <a
+              href="http://phphub.org/"
+              target="_blank"
+            >
+              <img src="//static2.cnodejs.org/public/images/phphub-logo.png">
+            </a>
+          </li>
+          <div class="sep10"></div>
+          <li>
+            <a
+              href="https://testerhome.com/"
+              target="_blank"
+            >
+              <img src="//static.cnodejs.org/FjLUc7IJ2--DqS706etPQ1EGajxK">
+            </a>
+          </li>
+        </ol>
+      </div>
+    </el-card>
+
+    <el-card
+      v-if="accesstoken"
+      shadow="never"
+      class="box-card cnode-app-download"
+    >
+      <div
+        slot="header"
+        class="box-card-header"
+      >
+        <span>友情社区</span>
+      </div>
+      <div class="box-card-content">
+        <img
+          width="200"
+          src="//static.cnodejs.org/FtG0YVgQ6iginiLpf9W4_ShjiLfU"
+          alt=""
+        >
+        <br>
+        <a
+          href="https://github.com/soliury/noder-react-native"
+          target="_blank"
+        >客户端源码地址</a>
+      </div>
+    </el-card>
   </aside>
 </template>
 
 <script>
 import { mapGetters } from 'vuex';
 export default {
+  data () {
+    return {
+      cardShadow: 'never'
+    }
+  },
   computed: {
     // 从 store 的 state 对象中获取 topics
     ...mapGetters({
@@ -129,9 +220,9 @@ export default {
 #sidebar {
   .box-card {
     margin-bottom: 15px;
+    font-size: 13px;
+    border-radius: 3px;
 
-    /deep/ {
-    }
     .box-card-content {
       line-height: 2em;
 
@@ -185,7 +276,20 @@ export default {
     }
     .signature {
       font-style: italic;
-      font-size: 14px;
+      font-size: 13px;
+    }
+    .friendship-community {
+      li {
+        line-height: 2em;
+      }
+      img {
+        width: 150px;
+      }
+    }
+    &.cnode-app-download {
+      .box-card-content {
+        text-align: center;
+      }
     }
   }
 }

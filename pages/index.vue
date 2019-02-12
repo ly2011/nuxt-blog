@@ -1,9 +1,6 @@
 <template>
   <section class="topics-container container">
-    <div
-      id="main"
-      class="clearfix"
-    >
+    <div id="main">
       <side-bar />
       <div id="content">
         <header class="header">
@@ -189,7 +186,7 @@ export default {
         .el-tabs__item {
           margin: 0 10px;
           padding: 0;
-          line-height: 1;
+          line-height: 20px;
           height: auto;
           color: #80bd01;
           &.is-active {

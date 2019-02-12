@@ -3,15 +3,18 @@
     <nav-bar />
     <nuxt />
     <footer-bottom />
+    <back-top />
   </div>
 </template>
 <script>
 import NavBar from '~/components/NavBar';
 import FooterBottom from '~/components/Footer';
+import BackTop from '~/components/BackTop';
 export default {
   components: {
     NavBar,
-    FooterBottom
+    FooterBottom,
+    BackTop
   }
 }
 </script>

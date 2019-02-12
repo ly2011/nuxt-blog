@@ -22,6 +22,12 @@ a.topic_title {
 .big {
   font-size: 14px;
 }
+.col_fade {
+  color: #ababab;
+}
+.header .col_fade {
+  color: #444;
+}
 #content .changes,
 .cell,
 .unstyled li div,
@@ -65,4 +71,7 @@ a.topic_title {
   position: relative;
   padding: 10px 0 10px 10px;
   font-size: 14px;
+}
+.sep10 {
+  height: 10px;
 }
