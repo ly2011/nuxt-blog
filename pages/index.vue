@@ -19,61 +19,6 @@
 
         <div class="table-list">
           <topic-list :topics="topics" />
-          <!-- <el-table
-            v-loading.body="loading"
-            :data="topics"
-            style="width: 100%"
-          >
-            <el-table-column
-              type="index"
-              label="序号"
-              align="center"
-              width="60px"
-            ></el-table-column>
-            <el-table-column
-              prop="title"
-              label="标题"
-              align="center"
-              min-width="120"
-              show-overflow-tooltip
-            ></el-table-column>
-            <el-table-column
-              prop="visit_count"
-              label="浏览数"
-              align="center"
-              min-width="120"
-            ></el-table-column>
-            <el-table-column
-              prop="reply_count"
-              label="回复数"
-              align="center"
-              min-width="120"
-            ></el-table-column>
-            <el-table-column
-              label="发表时间"
-              align="center"
-              min-width="120"
-            >
-              <template slot-scope="scope">
-                {{ scope.row.create_at }}
-              </template>
-            </el-table-column>
-            <el-table-column
-              label="操作"
-              align="center"
-              min-width="120"
-            >
-              <template slot-scope="scope">
-                <el-button
-                  size="small"
-                  @click="gotoDetail( scope.row )"
-                >
-                  详情
-                </el-button>
-              </template>
-            </el-table-column>
-          </el-table> -->
-
           <div
             v-show="pageInfo.total"
             class="pagination"
@@ -182,6 +127,9 @@ export default {
         }
         .el-tabs__nav-wrap:after {
           height: 0;
+        }
+        .el-tabs__active-bar {
+          background-color: transparent;
         }
         .el-tabs__item {
           margin: 0 10px;

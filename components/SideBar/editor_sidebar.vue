@@ -1,7 +1,13 @@
 <template>
   <div id="sidebar">
-    <el-card class="box-card">
-      <div slot="header" class="box-card-header">
+    <el-card
+      class="box-card"
+      shadow="never"
+    >
+      <div
+        slot="header"
+        class="box-card-header"
+      >
         <span>Markdown 语法参考</span>
       </div>
       <div class="box-card-content">
@@ -26,15 +32,24 @@
           </li>
         </ol>
         <span>
-          <a href="https://segmentfault.com/markdown" target="_blank">
+          <a
+            href="https://segmentfault.com/markdown"
+            target="_blank"
+          >
             Markdown 文档
           </a>
         </span>
       </div>
     </el-card>
 
-    <el-card class="box-card">
-      <div slot="header" class="box-card-header">
+    <el-card
+      class="box-card"
+      shadow="never"
+    >
+      <div
+        slot="header"
+        class="box-card-header"
+      >
         <span>话题发布指南</span>
       </div>
       <div class="box-card-content">
@@ -61,6 +76,7 @@ export default {};
   .box-card {
     font-size: 13px;
     margin-bottom: 15px;
+    border-radius: 3px;
 
     .box-card-content {
       ol {
