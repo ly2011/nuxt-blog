@@ -26,8 +26,8 @@
     "post-update": "yarn upgrade --latest"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.3.6",
-    "axios": "^0.18.0",
+    "@nuxtjs/axios": "^5.12.3",
+    "axios": "^0.21.1",
     "date-fns": "^1.30.1",
     "element-ui": "^2.5.4",
     "mavon-editor": "^2.6.17",
